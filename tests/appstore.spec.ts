@@ -2,16 +2,12 @@ require("dotenv").config();
 import test, { chromium } from "@playwright/test";
 import { LoginPage } from "../appstore/LoginPage";
 import { appstorePage } from "../appstore/appstorePage";
+import { id, Password, code, username, userPassword } from "./variable";
 
 let page: any;
 let login: any;
 
 test.beforeAll("test for refresh in template list", async () => {
-  const micsoftmail = process.env.id?.toString();
-  const micsoftPassword = process.env.Password?.toString();
-  const customerCode = process.env.code?.toString();
-  const userName = process.env.username?.toString();
-  const password = process.env.userPassword?.toString();
   test.setTimeout(300000);
   const browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
@@ -19,8 +15,8 @@ test.beforeAll("test for refresh in template list", async () => {
   login = new LoginPage(page);
 
   await login.goto();
-  await login.loginMicsoft(micsoftmail, micsoftPassword);
-  await login.loginSymphony(customerCode, userName, password);
+  await login.loginMicsoft(id, Password);
+  await login.loginSymphony(code, username, userPassword);
 });
 
 test("test for appstore file", async () => {
