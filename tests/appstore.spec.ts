@@ -7,7 +7,7 @@ import { id, Password, code, username, userPassword } from "./variable";
 let page: any;
 let login: any;
 
-test.beforeAll("test for refresh in template list", async () => {
+test.beforeAll("SymphonyLogin", async () => {
   test.setTimeout(300000);
   const browser = await chromium.launch({ headless: false });
   page = await browser.newPage();
@@ -19,7 +19,7 @@ test.beforeAll("test for refresh in template list", async () => {
   await login.loginSymphony(code, username, userPassword);
 });
 
-test("test for appstore file", async () => {
+test("appstore", async () => {
   const value = ["test1", "test2", "test3", "test4"];
   const options = ["12", "24", "48", "100"];
   const appCreate = {
