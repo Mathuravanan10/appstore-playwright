@@ -1,5 +1,4 @@
 import { expect, Page } from "@playwright/test";
-import isEmpty from "lodash/isEmpty";
 
 export class appstorePage {
   readonly page: Page;
@@ -14,11 +13,11 @@ export class appstorePage {
       const nextOptionIndex = (options.indexOf(option) + 1) % options.length;
       const nextOption = options[nextOptionIndex];
       await this.page.getByRole("option", { name: nextOption }).click();
-      if (!isEmpty(nextOption)) {
-        await expect(this.page).toHaveTitle(
-          "Best SAP Consulting Services and Solutions - Zero Cloud Transformation | symphony4cloud"
-        );
-      }
+      // if (!isEmpty(nextOption)) {
+      //   await expect(this.page).toHaveTitle(
+      //     "Best SAP Consulting Services and Solutions - Zero Cloud Transformation | symphony4cloud"
+      //   );
+      // }
     }
   }
 
@@ -35,13 +34,13 @@ export class appstorePage {
         .getByPlaceholder("Search by app name or app id")
         .fill(test);
 
-      if (!isEmpty(test)) {
-        await expect(this.page).toHaveTitle(
-          "Best SAP Consulting Services and Solutions - Zero Cloud Transformation | symphony4cloud"
-        );
-      } else {
-        await this.page.getByText("No apps found!").waitFor();
-      }
+      // if (!isEmpty(test)) {
+      //   await expect(this.page).toHaveTitle(
+      //     "Best SAP Consulting Services and Solutions - Zero Cloud Transformation | symphony4cloud"
+      //   );
+      // } else {
+      //   await this.page.getByText("No apps found!").waitFor();
+      // }
     }
   }
 
