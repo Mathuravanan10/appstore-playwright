@@ -1,7 +1,7 @@
-const id = "mathuravanan.s@basiscloudsolutions.com";
-const Password = "@mathu2929";
+const id = "$id";
+const Password = "$Mpass";
 const code = "c100001";
-const username = "$ma";
-const userPassword = "@mathu29";
+const username = "$user";
+const userPassword = "$pass";
 
 export { id, Password, code, username, userPassword };
