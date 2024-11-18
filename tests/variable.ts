@@ -1,7 +1,7 @@
 const id = "$id";
-const Password = "$Mpass";
+const Password = "$Mp";
 const code = "c100001";
 const username = "$user";
-const userPassword = "$pass";
+const userPassword = "$Up";
 
 export { id, Password, code, username, userPassword };
