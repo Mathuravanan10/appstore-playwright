@@ -190,5 +190,24 @@ async kollgesLogin() {
   const page9 = await page9Promise;
   await page9.getByRole('heading', { name: 'Welcome to Dotter' }).click();
 
+
+  await page.goto('https://www.townhousecrackers.ca/en_CA/home.html');
+  await page.getByRole('button', { name: 'Accept Cookies' }).click();
+  await page.getByLabel('Recipes').click();
+  await page.getByRole('heading', { name: 'TASTY RECIPES USING TOWN' }).click();
+  await page.getByRole('img', { name: 'Townhouse Crackers arranged' }).click();
+  await page.getByLabel('menu', { exact: true }).getByLabel('Sign Up').click();
+  await page.getByRole('heading', { name: 'SIGN UP TO FIND OUT ABOUT NEW' }).click();
+  await page.getByPlaceholder('First Name*').click();
+  await page.getByPlaceholder('First Name*').fill('mathu');
+  await page.getByPlaceholder('Last Name*').click();
+  await page.getByPlaceholder('Last Name*').fill('ravanan');
+  await page.getByPlaceholder('Email Address*', { exact: true }).click();
+  await page.getByPlaceholder('Email Address*', { exact: true }).fill('mathu@gmail.com');
+  await page.getByPlaceholder('Confirm Email Address*').click();
+  await page.getByPlaceholder('Confirm Email Address*').fill('mathu@gmail.com');
+  await page.getByLabel('Date of Birth *').fill('2024-01-01');
+  await page.locator('label').filter({ hasText: 'Yes, I consent to receiving' }).click();
+
   }
 }

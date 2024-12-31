@@ -51,8 +51,8 @@ export const menuPageOurFood = [
     ourFoodButton: 'click to see where to buy',
    },
    {
-    ourFoodLink: 'Kellogg’s* Town House* Original Crackers Image Kellogg’s* Town House* Original',
     ourFoodTitleLink:'Buy Now at Wholesale Club',
+    ourFoodLink: 'Kellogg’s* Town House* Original Crackers Image Kellogg’s* Town House* Original',
     ourFoodImg: "Town House Oven Baked",
     ourFoodHeader:'Town House Oven Baked',
    },
@@ -85,6 +85,8 @@ export const menuPageOurFood = [
     ourFoodTitleLink:'Buy Now at Real Canadian',
     ourFoodImg: "Town House Oven Baked",
     ourFoodHeader:'Town House Oven Baked',
+    ourFoodButtonLink:'Powered By Dotter',
+    ourFoodButtonHeader:'Welcome to Dotter',
    },
 ]
 
