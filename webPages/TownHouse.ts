@@ -26,7 +26,7 @@ async MainPageTest(productMainPageList: any, locator:string) {
       if (menuItem.productMenuLabel) {
         await expect(this.page.getByLabel('Townhouse Crackers_brand logo')).toBeVisible();
         await this.page.waitForTimeout(2000);
-        console.log(`${menuItem.productMenuLabel} Tested Successfully`);
+        console.log(`${menuItem.productMenuLabel} Header Tested Successfully`);
         await this.page.goto(locator, { timeout: 30000, waitUntil: 'domcontentloaded' });
       }
     }
@@ -43,10 +43,11 @@ async MainPageTest(productMainPageList: any, locator:string) {
         const busyIndicator = this.page.getByText("Please wait");
         await busyIndicator.waitFor({ state: 'hidden', timeout: 60000 });
         if (menuItem.productCardListImg) {
+          await this.page.waitForLoadState('domcontentloaded');
           await expect(this.page.getByRole('img', { name: menuItem.productCardListImg})).toBeVisible();
           await this.page.waitForTimeout(2000);
         }
-        console.log(`${menuItem.productCardList} Tested Successfully`);
+        console.log(`${menuItem.productCardList} Card List Tested Successfully`);
         await this.page.goto(locator, { timeout: 30000, waitUntil: 'domcontentloaded' });
       }
   }
@@ -60,21 +61,21 @@ async MainPageTest(productMainPageList: any, locator:string) {
         if(menuItem.footerLabels){
           const MenuHeaderLocator = this.page.getByLabel( menuItem.footerLabels);
           await MenuHeaderLocator.click();
-          console.log(`${menuItem.footerLabels} Tested Successfully`);
+          console.log(`${menuItem.footerLabels} Footer Tested Successfully`);
         }else if(menuItem.footerLableLink){
           const footerLink = this.page.getByRole('link', { name: menuItem.footerLableLink });
           await footerLink.click();
-          console.log(`${menuItem.footerLableLink} Tested Successfully`);
+          console.log(`${menuItem.footerLableLink} Footer Tested Successfully`);
         }
         else if(menuItem.footerTop){
           const MenuHeaderLocator = this.page.getByLabel( menuItem.footerTop);
           await MenuHeaderLocator.click();
-          console.log(`${menuItem.footerTop} Tested Successfully`);
+          console.log(`${menuItem.footerTop} Footer Tested Successfully`);
         }
         else{
           const lableList = this.page.getByLabel('footer main navigation').getByLabel(menuItem.footerLable);
           await lableList.click();
-          console.log(`${menuItem.footerLable} Tested Successfully`);
+          console.log(`${menuItem.footerLable} Footer Tested Successfully`);
         }
         const busyIndicator = this.page.getByText("Please wait");
         await busyIndicator.waitFor({ state: 'hidden', timeout: 60000 });

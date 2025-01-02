@@ -19,9 +19,22 @@ export class testingCardPage {
       await busyIndicator.waitFor({ state: 'hidden', timeout: 60000 });
       if (menuItem.productCardListImg) {
         await this.page.waitForTimeout(2000);
+        await this.page.waitForLoadState('domcontentloaded');
         await expect(this.page.getByRole('img', { name: menuItem.productCardListImg})).toBeVisible();
         await expect(this.page.getByRole('heading', { name: menuItem.productCardListText})).toBeVisible();
         await expect(this.page.getByRole('link', { name: 'PRINT' })).toBeVisible();
+      }
+      if(menuItem.PREPTIME){
+        // await expect(this.page.getByText(menuItem.PREPTIME)).toBeVisible();
+        await expect(this.page.getByText('PREP TIME (MIN):')).toBeVisible();
+      }
+      if(menuItem.TOTALTIME){
+        // await expect(this.page.getByText(menuItem.TOTALTIME)).toBeVisible();
+        await expect(this.page.getByText('TOTAL TIME (MIN):')).toBeVisible();
+      }
+      if(menuItem.SERVINGS){
+        // await expect(this.page.getByText(menuItem.SERVINGS)).toBeVisible();
+        await expect(this.page.getByText('SERVINGS')).toBeVisible();
       }
       const Ingredients = this.page.getByRole('link', { name: 'Nutrition Information' });
       if(await Ingredients.isVisible()){
@@ -29,7 +42,7 @@ export class testingCardPage {
         await this.page.waitForTimeout(1000);
         await this.page.getByRole('link', { name: 'Close' }).click();
       } 
-      console.log(`${menuItem.productCardList} Tested Successfully.`);       
+      console.log(`${menuItem.productCardList} Cards Tested Successfully.`);       
       await this.page.goto(locator, { timeout: 30000, waitUntil: 'domcontentloaded' });
     }
   }

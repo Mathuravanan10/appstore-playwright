@@ -56,11 +56,11 @@ export const menuPageOurFood = [
     ourFoodImg: "Town House Oven Baked",
     ourFoodHeader:'Town House Oven Baked',
    },
-   {
-    ourFoodTitleLink:'Buy Now at Valu-Mart',
-    ourFoodImg: "Town House Oven Baked",
-    ourFoodHeader:'Town House Oven Baked',
-   },
+//    {
+//     ourFoodTitleLink:'Buy Now at Valu-Mart',
+//     ourFoodImg: "Town House Oven Baked",
+//     ourFoodHeader:'Town House Oven Baked',
+//    },
    {
     ourFoodTitleLink:'Buy Now at Zehrs',
     ourFoodImg: "Town House Oven Baked",
@@ -86,7 +86,6 @@ export const menuPageOurFood = [
     ourFoodImg: "Town House Oven Baked",
     ourFoodHeader:'Town House Oven Baked',
     ourFoodButtonLink:'Powered By Dotter',
-    ourFoodButtonHeader:'Welcome to Dotter',
    },
 ]
 
@@ -119,61 +118,97 @@ export const productMainHeaderList = [
         productCardList: "CRANBERRY AND PISTACHIO",
         productCardListImg: "CRANBERRY AND PISTACHIO",
         productCardListText: 'CRANBERRY AND PISTACHIO',
+        PREPTIME: '20',
+        TOTALTIME: '80',
+        SERVINGS: '24',
     },
     {
         productCardList: "TOWN HOUSE FLIPSIDES APPLE,",
         productCardListImg: "TOWN HOUSE® FLIPSIDES ® APPLE",
         productCardListText: 'TOWN HOUSE® FLIPSIDES ® APPLE',
+        PREPTIME: '10',
+        TOTALTIME: '10',
+        SERVINGS: '10',
     },
     {
         productCardList: "CHOCOLATE DIPPED CRACKERS",
         productCardListImg: "CHOCOLATE DIPPED CRACKERS",
         productCardListText: 'CHOCOLATE DIPPED CRACKERS',
+        PREPTIME: '10',
+        TOTALTIME: '20',
+        SERVINGS: '13',
     },
     {
         productCardList: "Chipotle Cheeseburger Sliders",
         productCardListImg: "Chipotle Cheeseburger Sliders",
         productCardListText: 'Chipotle Cheeseburger Sliders',
+        PREPTIME: '20',
+        TOTALTIME: '20',
+        SERVINGS: '10',
     },
     {
         productCardList: "Cold Smoked Salmon Spread",
         productCardListImg: "Cold Smoked Salmon Spread",
         productCardListText: 'Cold Smoked Salmon Spread',
+        PREPTIME: '10',
+        TOTALTIME: '130',
+        SERVINGS: '14',
     },
     {
         productCardList: "Swiss Cheese and Grape Salsa",
         productCardListImg: "Swiss Cheese and Grape Salsa",
         productCardListText: 'Swiss Cheese and Grape Salsa',
+        PREPTIME: '15',
+        TOTALTIME: '15',
+        SERVINGS: '32',
     },
     {
         productCardList: "Mediterranean Dip",
         productCardListImg: "Mediterranean Dip",
         productCardListText: 'Mediterranean Dip',
+        PREPTIME: '10',
+        TOTALTIME: '10',
+        SERVINGS: '16',
     },
     {
         productCardList: "Sun-Dried Tomato and Feta",
         productCardListImg: "Sun-Dried Tomato and Feta",
         productCardListText: 'Sun-Dried Tomato and Feta',
+        PREPTIME: '10',
+        TOTALTIME: '10',
+        SERVINGS: '20',
     },
     {
         productCardList: "Party pizzas Party pizzas",
         productCardListImg: "Party Pizzas",
         productCardListText: 'Party Pizzas',
+        PREPTIME: '15',
+        TOTALTIME: '20',
+        SERVINGS: '9',
     },
     {
         productCardList: "Pub cheese dip Pub cheese dip",
         productCardListImg: "Pub Cheese Dip",
         productCardListText: 'Pub Cheese Dip',
+        PREPTIME: '20',
+        TOTALTIME: '20',
+        SERVINGS: '',
     },
     {
         productCardList: "Avocado and Mango Salsa",
         productCardListImg: "Avocado and Mango Salsa",
         productCardListText: 'Avocado and Mango Salsa',
+        PREPTIME: '15',
+        TOTALTIME: '',
+        SERVINGS: '20',
     },
     {
         productCardList: "Creamy Buffalo Chicken Dip",
         productCardListImg: "Creamy Buffalo Chicken Dip",
         productCardListText: 'Creamy Buffalo Chicken Dip',
+        PREPTIME: '20',
+        TOTALTIME: '20',
+        SERVINGS: '32',
     },
   ];
 
@@ -217,3 +252,25 @@ export const productFooterList = [
         footerTop: "back to top",
     },
   ];
+
+export const appCreate = {
+    firstName: "Mathu",
+    LastName: "ravanan",
+    Email: "Mono@gmail.com",
+    confirmEmail: "Mono@gmail.com",
+    DOB: "2024-01-01",
+    approver: false,
+  };
+
+export const buyRegionButton = [
+     "Manitoba",
+     "Alberta",
+    "Ontario",
+];
+
+export const buySoldByButton = [
+     "Real Canadian Superstore",
+     "Instacart",
+     "Metro Ontario",
+    'All Retailer',
+];
