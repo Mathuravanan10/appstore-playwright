@@ -54,4 +54,4 @@ test('multiple checks using steps', async ({ page }) => {
     await page.goto(locator);
     await mainPage.MainPageFooter(productFooterList, locator);
   });
-});
+}); 

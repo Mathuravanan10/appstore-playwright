@@ -56,18 +56,8 @@ export const menuPageOurFood = [
     ourFoodImg: "Town House Oven Baked",
     ourFoodHeader:'Town House Oven Baked',
    },
-//    {
-//     ourFoodTitleLink:'Buy Now at Valu-Mart',
-//     ourFoodImg: "Town House Oven Baked",
-//     ourFoodHeader:'Town House Oven Baked',
-//    },
    {
     ourFoodTitleLink:'Buy Now at Zehrs',
-    ourFoodImg: "Town House Oven Baked",
-    ourFoodHeader:'Town House Oven Baked',
-   },
-   {
-    ourFoodTitleLink:'Buy Now at Fortinos',
     ourFoodImg: "Town House Oven Baked",
     ourFoodHeader:'Town House Oven Baked',
    },

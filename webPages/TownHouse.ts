@@ -65,6 +65,11 @@ async MainPageTest(productMainPageList: any, locator:string) {
         }else if(menuItem.footerLableLink){
           const footerLink = this.page.getByRole('link', { name: menuItem.footerLableLink });
           await footerLink.click();
+          if(menuItem.footerLableLink !== 'Cookie Preferences'){
+            const page2Promise = this.page.waitForEvent('popup');
+            await this.page.waitForLoadState('domcontentloaded');
+            (await page2Promise).close();
+          }
           console.log(`${menuItem.footerLableLink} Footer Tested Successfully`);
         }
         else if(menuItem.footerTop){
@@ -79,9 +84,8 @@ async MainPageTest(productMainPageList: any, locator:string) {
         }
         const busyIndicator = this.page.getByText("Please wait");
         await busyIndicator.waitFor({ state: 'hidden', timeout: 60000 });
-        if (menuItem.footerLable === 'Cookie Preferences') {
-            await this.page.getByRole('button', { name: 'Reject All' }).click();
-            await this.page.waitForTimeout(2000);
+        if (menuItem.footerLableLink === 'Cookie Preferences') {
+            await this.page.getByRole('button', { name: menuItem.footerCheckButton }).click();
         }
         await this.page.waitForTimeout(2000);
         await this.page.goto(locator, { timeout: 30000, waitUntil: 'domcontentloaded' });

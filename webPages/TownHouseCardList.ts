@@ -25,15 +25,12 @@ export class testingCardPage {
         await expect(this.page.getByRole('link', { name: 'PRINT' })).toBeVisible();
       }
       if(menuItem.PREPTIME){
-        // await expect(this.page.getByText(menuItem.PREPTIME)).toBeVisible();
         await expect(this.page.getByText('PREP TIME (MIN):')).toBeVisible();
       }
       if(menuItem.TOTALTIME){
-        // await expect(this.page.getByText(menuItem.TOTALTIME)).toBeVisible();
         await expect(this.page.getByText('TOTAL TIME (MIN):')).toBeVisible();
       }
       if(menuItem.SERVINGS){
-        // await expect(this.page.getByText(menuItem.SERVINGS)).toBeVisible();
         await expect(this.page.getByText('SERVINGS')).toBeVisible();
       }
       const Ingredients = this.page.getByRole('link', { name: 'Nutrition Information' });

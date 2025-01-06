@@ -27,6 +27,9 @@ export class testingHeaderPage {
         }
         await this.page.waitForTimeout(2000);
         await this.page.getByTitle(menuItem.ourFoodTitleLink).click();
+        const page2Promise = this.page.waitForEvent('popup');
+        await this.page.waitForLoadState('domcontentloaded');
+        (await page2Promise).close();
         await this.page.goto(ourFoodLink, { timeout: 30000, waitUntil: 'domcontentloaded' });
         console.log(menuItem.ourFoodTitleLink, 'Headers Testing Now');
         if(menuItem.ourFoodButtonLink){
