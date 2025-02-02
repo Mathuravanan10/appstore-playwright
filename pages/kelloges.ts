@@ -905,7 +905,7 @@ async kollgesLogin() {
   await page.getByRole('link', { name: 'Shop our site' }).click();
   await page.getByRole('link', { name: 'Original & Flavors' }).click();
   await page.getByLabel('menu', { exact: true }).getByRole('link', { name: 'Products' }).click();
-  await page.getByRole('link', { name: 'Puff\'d', exact: true }).click();
+  await page.getByRole('link', { name: `Puff\'d`, exact: true }).click();
   await page.getByRole('link', { name: 'Snap\'d' }).click();
   await page.getByRole('link', { name: 'Grooves' }).click();
   await page.getByRole('link', { name: 'Duoz' }).click();
@@ -916,5 +916,271 @@ async kollgesLogin() {
   await page.getByRole('link', { name: 'SHOP ALL', exact: true }).click();
   await page.getByRole('link', { name: 'Eat it' }).click();
   await page.getByRole('link', { name: 'Wear It' }).click();
+
+  await page.getByLabel('menu', { exact: true }).getByRole('link', { name: 'Our Story' }).click();
+
+
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByRole('button', { name: 'OK', exact: true }).click();
+  await page.getByLabel('Close Modal').click();
+  await page.getByRole('heading', { name: 'Our Products' }).click();
+  await page.getByRole('link', { name: 'Cheez-It crackers snack bowl' }).click();
+  await page.getByRole('img', { name: 'Cheez-It Baked Snack Crackers' }).click();
+  await page.getByRole('heading', { name: 'Cheesy, Crunchy, Satisfaction.' }).click();
+  await page.getByRole('link', { name: 'Cheez-It® Original Snack' }).click();
+  await page.locator('section').filter({ hasText: 'Baked Snack Crackers Cheez-It' }).locator('img').first().click();
+  await page.getByRole('heading', { name: 'Cheez-It® Original Snack' }).click();
+  await page.getByText('The one. The only. The').click();
+  await page.getByRole('heading', { name: 'Nutrition' }).click();
+  await page.getByRole('heading', { name: 'Ingredients' }).click();
+  await page.getByText('Ingredients: Enriched flour (').click();
+  await page.getByText('For full nutrition').click();
+  await page.locator('#container-22d6269fad').getByRole('link', { name: 'Where To Buy', exact: true }).click();
+  await page.getByLabel('Shop from other retailers').locator('img').first().click();
+  await page.getByLabel('Shop from other retailers').locator('img').nth(1).click();
+  await page.getByLabel('Shop Cheez-It® Original Snack').click();
+  await page.getByLabel('Close the shop now shopping').click();
+  const page1Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'View SmartLabel' }).click();
+  const page1 = await page1Promise;
+  await page1.getByRole('button', { name: 'OK', exact: true }).click();
+
+
+  await page.getByRole('link', { name: 'Check Out Our Promos and' }).click();
+  await page.getByText('CURRENT', { exact: true }).click();
+  await page.getByText('PROMOTIONS', { exact: true }).click();
+  await page.locator('.section--in-viewport > .content_wrapper').click();
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByRole('link', { name: 'Three Cheez-It boxes on a red' }).click();
+  await page.locator('#ps-lightbox-background').click();
+  await page.getByRole('link', { name: 'Three Cheez-It boxes on a red' }).click();
+
+
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByRole('button', { name: 'OK', exact: true }).click();
+  await page.getByLabel('Close Modal').click();
+  await page.getByRole('link', { name: 'Shop All', exact: true }).click();//
+  await page.getByRole('heading', { name: 'Welcome to Cheez-It®' }).click();
+  await page.getByText('New Flavors & Merch Have').click();
+  await page.locator('.pagebuilder-slide-wrapper').first().click();
+  await page.getByLabel('All Products').getByText('All Products').click();
+  await page.locator('#shopify-section-ci-cta div').filter({ hasText: 'WANT IT WANT IT WANT IT WANT' }).nth(1).click();
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByRole('link', { name: 'Home' }).click();//
+  await page.getByLabel('footer main navigation').getByRole('link', { name: 'Products' }).click();//
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByRole('link', { name: 'Where To Buy', exact: true }).click(); //
+  await page.getByLabel('Close the shop now shopping').click();
+  await page.getByRole('link', { name: 'Promotions', exact: true }).click(); //
+  await page.locator('.section--in-viewport > .content_wrapper').click();
+  await page.getByRole('link', { name: 'Videos' }).click();//
+  await page.locator('section').filter({ hasText: 'Videos' }).locator('div').first().click();
+  await page.getByRole('link', { name: 'FAQ' }).click();//
+  await page.locator('#container-ab915426f7 div').filter({ hasText: 'Frequently Asked Questions' }).nth(2).click();
+  await page.getByLabel('footer main navigation').getByRole('link', { name: 'Recipes' }).click();//
+  await page.getByRole('heading', { name: 'Recipes' }).locator('span').click();
+  await page.locator('.section--in-viewport > .content_wrapper').first().click();
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByLabel('footer main navigation').getByRole('link', { name: 'Cheez-It® Bowl' }).click();//
+  await page.getByRole('img', { name: 'Cheez-It Citrus Bowl Logo' }).click();
+  await page.getByRole('link', { name: 'Contact Us' }).click();//
+  await page.getByRole('heading', { name: 'Contact Us' }).click();
+  await page.getByRole('link', { name: 'Site Map' }).click();//
+  await page.goto('https://www.cheezit.com/en-us/sitemap.html');
+  await page.getByRole('heading', { name: 'Cheez-It® Site Map' }).click();
+  await page.getByLabel('Back To Top').click();
+
+  await page.getByRole('link', { name: 'Facebook' }).click();
+
+
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByRole('button', { name: 'OK', exact: true }).click();
+  await page.getByLabel('Close Modal').click();
+  const page1Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'Facebook' }).click();
+  const page1 = await page1Promise;
+  await page1.getByLabel('Close').click();
+  await page1.getByText('I love cheez it\'s but theres').click();
+  await page.getByLabel('footer secondary navigation').getByText('Cookie Preferences').click();
+  await page.getByRole('button', { name: 'Reject All' }).click();
+  await page.getByRole('link', { name: 'Shipping & Returns' }).click();
+  await page.getByRole('heading', { name: 'Shipping & Returns' }).click();
+  await page.getByText('Do you offer free shipping?').click();
+  const page2Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'Privacy Notice' }).click();
+  const page2 = await page2Promise;
+  const page3Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'US Privacy' }).click();
+  const page3 = await page3Promise;
+  const page4Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'Terms of Use' }).click();
+  const page4 = await page4Promise;
+  const page5Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'Your Privacy Choices' }).click();
+  const page5 = await page5Promise;
+  const page6Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'Accessibility' }).click();
+  const page6 = await page6Promise;
+
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByRole('button', { name: 'OK', exact: true }).click();
+  await page.getByRole('link', { name: 'Our Impact' }).click();
+  await page.getByRole('heading', { name: 'Our Impact' }).click();
+  await page.locator('.section--in-viewport > .content_wrapper').first().click();
+  await page.getByLabel('Close Modal').click();
+  await page.getByText('At Cheez-It®, we’re dedicated').click();
+  const page1Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'Cheez-it grooves, orginal,' }).click();
+  const page1 = await page1Promise;
+  await page.getByRole('link', { name: 'Accurate Box Company' }).click();
+  await page.getByLabel('Close the mobile video player').click();
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByLabel('menu', { exact: true }).getByRole('link', { name: 'Recipes' }).click();
+  await page.getByRole('heading', { name: 'Recipes' }).locator('span').click();
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByLabel('menu', { exact: true }).getByRole('link', { name: 'Cheez-It® Bowl' }).click();
+  await page.getByRole('img', { name: 'Cheez-It Citrus Bowl Logo' }).click();
+  await page.getByRole('heading', { name: 'Congrats to the 2024 Cheez-It' }).click();
+  await page.getByText('As the cheeziest sponsor of').click();
+  await page.getByRole('link', { name: 'Shop Cheez-It® Football Swag' }).click();
+  await page.goto('https://www.cheezit.com/en-us/cheezitbowl.html');
+  const page2Promise = page.waitForEvent('popup');
+  await page.getByRole('link', { name: 'Cheez-It Citrus Bowl Trophies' }).click();
+  const page2 = await page2Promise;
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByRole('link', { name: 'En español' }).click();
+  await page.getByRole('link', { name: 'In English' }).click();
+  await page.getByRole('link', { name: ' Where to buy' }).click();
+  await page.getByLabel('Shop Cheez-It® Original Snack').click();
+  await page.locator('.ps-product-image > div > img').click();
+  await page.getByLabel('Close the shop now shopping').click();
+  await page.getByRole('link', { name: ' Promotions' }).click();
+  await page.locator('.section--in-viewport > .content_wrapper').click();
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByLabel('Sign In / Sign Up / My Account').click();
+  await page.getByText('Customer Login').click();
+  await page.getByRole('heading', { name: 'New Customers' }).click();
+  await page.getByRole('link', { name: 'Country Selector' }).click();
+  await page.getByRole('heading', { name: 'Country Selector' }).click();
+
+
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByRole('button', { name: 'OK', exact: true }).click();
+  await page.getByRole('link', { name: 'Shop', exact: true }).click();
+  await page.getByRole('button', { name: 'QuickView Cheez-It® Smoked' }).click();
+  await page.locator('#modal-content-83 iframe').contentFrame().getByText('Cheez-It® Smoked Bundle', { exact: true }).click();
+  await page.locator('#modal-content-83 iframe').contentFrame().getByText('For the snacking adventurer,').click();
+  await page.locator('#modal-content-83 iframe').contentFrame().getByText('$').click();
+  await page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Increment').click();
+  await page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Increment').click();
+  await page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Decrement').click();
+  await page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Decrement').click();
+  await page.getByRole('dialog').click();
+  await page.locator('#modal-content-83 iframe').contentFrame().getByText('Cheez-It® Smoked Bundle For').click();
+  await page.getByRole('button', { name: '' }).click();
+  await page.locator('[id="\\31 "]').getByRole('button', { name: 'Add to Cart' }).click();
+  await page.getByRole('img', { name: 'Cheez-It® Smoked Bundle' }).click();
+  await page.getByLabel('Exit fullscreen').click();
+  await page.getByRole('heading', { name: 'Cheez-It® Smoked Bundle' }).locator('span').click();
+  await page.getByText('For the snacking adventurer,').click();
+  await page.getByLabel('Add to Cart').click();
+  await page.goto('https://shop.cheezit.com/shop.html');
+  await page.locator('[id="\\32 "]').getByRole('button', { name: 'Add to Cart' }).click();
+  await page.locator('div').filter({ hasText: /^Your Cart$/ }).click();
+  await page.getByText('Your order is eligible for').click();
+  await page.getByTitle('ILTHY® for Cheez-It™ Club Football', { exact: true }).click();
+  await page.getByRole('link', { name: ' My Cart 1 items' }).click();
+  await page.getByText('Summary').click();
+  await page.getByRole('button', { name: 'Checkout' }).click();
+  await page.getByText('Checkout', { exact: true }).click();
+  await page.getByRole('textbox', { name: '* Email Address Email Address' }).click();
+  await page.getByRole('textbox', { name: '* Email Address Email Address' }).fill('mathura');
+  await page.getByText('Shipping Address').click();
+  await page.getByRole('textbox', { name: '* First Name' }).click();
+  await page.getByRole('textbox', { name: '* Last Name' }).click();
+  await page.getByRole('textbox', { name: '* First Name' }).click();
+  await page.getByRole('textbox', { name: '* First Name' }).fill('mm');
+  await page.getByPlaceholder('Company (Optional)').click();
+  await page.getByPlaceholder('Company (Optional)').fill('gg');
+  await page.getByPlaceholder('Street Address: Line 1').click();
+  await page.getByPlaceholder('Street Address: Line 1').fill('jj');
+  await page.locator('#co-shipping-form').click();
+  await page.locator('select[name="region_id"]').selectOption('18');
+  await page.getByPlaceholder('Zip/Postal Code').click();
+  await page.getByPlaceholder('Zip/Postal Code').fill('88');
+  await page.getByPlaceholder('Phone Number').click();
+  await page.getByPlaceholder('Phone Number').fill('6667889962');
+  await page.getByText('Shipping Methods').click();
+  await page.locator('span').filter({ hasText: 'Order Summary' }).click();
+  await page.getByRole('dialog').click();
+  await page.getByRole('link', { name: '< Back to Shopping' }).click();
+
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByRole('button', { name: 'OK', exact: true }).click();
+  await page.getByLabel('Close Modal').click();
+  await page.getByRole('link', { name: ' Cart' }).click();
+  await page.locator('#maincontent').getByText('You have no items in your').click();
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByRole('link', { name: 'Shop', exact: true }).click();
+  await page.locator('[id="\\31 "]').getByRole('button', { name: 'Add to Cart' }).click();
+  await page.getByLabel('Add to Cart').click();
+  await page.goto('https://shop.cheezit.com/shop.html');
+  await page.locator('li').filter({ hasText: 'Cheez-It® Smoked Bundle $11.' }).getByRole('button').nth(1).click();
+  await page.getByLabel('Quantity Increment').click();
+  await page.getByLabel('Add to Cart').click();
+  await page.goto('https://shop.cheezit.com/shop.html');
+  await page.locator('[id="\\32 "]').getByRole('button', { name: 'Add to Cart' }).click();
+  await page.getByRole('link', { name: 'Remove' }).click();
+  await page.getByRole('button', { name: 'OK', exact: true }).click();
+  await page.getByText('You have no items in your').click();
+  await page.getByRole('button', { name: 'Close' }).click();
+
+  await page.goto('https://www.cheezit.com/en-us/home.html');
+  await page.getByRole('button', { name: 'OK', exact: true }).click();
+  await page.getByRole('button', { name: 'Search' }).click();
+  await page.getByPlaceholder('Type Here…').click();
+  await page.getByPlaceholder('Type Here…').fill('cheezit');
+  await page.getByPlaceholder('Type Here…').press('ArrowDown');
+  await page.getByPlaceholder('Type Here…').fill('cheez');
+  await page.getByPlaceholder('Type Here…').press('ArrowDown');
+  await page.getByRole('button', { name: 'Cheez-It® Baked Snack' }).press('Enter');
+  await page.getByRole('heading', { name: 'Results for "Cheez-It® Baked' }).click();
+  await page.getByRole('link', { name: 'Cheez-It® Baked Snack' }).click();
+  await page.goto('https://www.cheezit.com/en-us/search-results.html?#q=Cheez-It%C2%AE%20Baked%20Snack%20Crackers%20|%20Cheez-It%C2%AE');
+  await page.getByPlaceholder('Type Here…').click();
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByPlaceholder('Type Here…').press('ArrowRight');
+  await page.getByTitle('Search').click();
+  await page.getByRole('heading', { name: 'No results found' }).click();
   }
 }

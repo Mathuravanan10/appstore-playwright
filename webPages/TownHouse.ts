@@ -301,29 +301,36 @@ async MainPageTest(productMainPageList: any, locator:string) {
     }
   }
 
-  async SearchTesting (){
-    await this.page.goto('https://www.kellanovaus.com/us/en/home.html');
-    const button = this.page.getByRole('button', { name: 'Accept Cookies' });
-    if(await button.isVisible()){
-     await this.page.getByRole('button', { name: 'Accept Cookies' }).click();
+  async SearchTesting (searchpage, testpage){
+    // await this.page.goto('https://www.kellanovaus.com/us/en/home.html');
+    await testpage.acceptCookies();
+    for(const click of searchpage){
+      await this.page.getByRole('button', { name: 'Search' }).click();
+      await this.page.getByPlaceholder('Type Here…').click();
+      await this.page.getByPlaceholder('Type Here…').fill(click.searchName);
+      await this.page.getByRole('button', { name: 'Search', exact: true }).click();
+      await this.page.waitForTimeout(4000);
+      if(await this.page.getByRole('heading', { name: click.searchNoData }).isVisible({ timeout: 40000 })){
+        await expect(this.page.getByRole('heading', { name: click.expectSearch })).toBeVisible();
+        console.log('Search element is not visible');
+        await this.page.goBack();
+      }else{  
+        if(click.expectSearch){
+        await expect(this.page.getByRole('heading', { name: click.expectSearch })).toBeVisible();
+        }
+        if(click.searchHeading){
+        await expect(this.page.getByRole('heading', { name: click.searchHeading })).toBeVisible();
+        }
+        if(click.searchLink){
+        await this.page.getByRole('link', { name: click.searchLink }).click();
+        }
+        if(click.searchiImg){
+        await expect(this.page.getByRole('img', { name: click.searchiImg })).toBeVisible();
+        }
+        await this.page.goBack();
+      }
     }
-    await this.page.getByRole('button', { name: 'Search' }).click();
-    await this.page.getByPlaceholder('Type Here....').click();
-    await this.page.getByPlaceholder('Type Here....').fill('EGGO PANCAKES BUTTERM');
-    await this.page.getByRole('button', { name: 'Search', exact: true }).click();
-    await this.page.waitForTimeout(4000);
-    if(await this.page.getByRole('heading', { name: 'No results for "EGGO PANCAKES' }).isVisible({ timeout: 40000 })){
-      await expect(this.page.getByRole('heading', { name: 'Search Results' })).toBeVisible();
-      console.log('Search element is not visible');
-      await this.page.goBack();
-    }else{  
-      await expect(this.page.getByRole('heading', { name: 'Search Results' })).toBeVisible();
-      await expect(this.page.getByRole('heading', { name: 'Results for "EGGO PANCAKES' })).toBeVisible();
-      await this.page.getByRole('link', { name: 'EGGO PANCAKES BUTTERMILK' }).click();
-      await expect(this.page.getByRole('img', { name: 'Kellogg\'s® Eggo® Buttermilk' })).toBeVisible();
-      await expect(this.page.getByRole('heading', { name: 'Kellogg\'s® Eggo® Buttermilk' })).toBeVisible();
-      await this.page.goBack();
-    }
+    await this.page.goBack();
   }
 
   async HeaderWhereToByLinks (HeaderWhereToBuy: any, testpage: any, whereToBuySoldByInputData:string[], whereToBuyTellMeAboutInputData:string[], whereToBuyRegionInputData:string[]){
@@ -393,7 +400,7 @@ async MainPageTest(productMainPageList: any, locator:string) {
     }
   }
 
-  async cheezitMainpage (testpage, cheezitMainpage){
+  async cheezitMainpage (testpage, cheezitMainpage, cheezitDropdown, cheezitDropdownShop){
     await testpage.acceptCookies();
     for(const click of cheezitMainpage){
       if(click.MainHeaderexact){
@@ -401,7 +408,7 @@ async MainPageTest(productMainPageList: any, locator:string) {
         if(click.MainImg){
           await expect(this.page.getByRole('img', { name: click.MainImg })).toBeVisible();
         }
-        console.log(`${click.MainHeaderexact} is Tested Successfull`)
+        console.log(`${click.MainHeaderexact} is Tested Successfull`);
       }
       if(click.MainHeader){
         await expect(this.page.getByRole('img', { name: click.MainHeader })).toBeVisible();
@@ -411,7 +418,7 @@ async MainPageTest(productMainPageList: any, locator:string) {
         if(click.MainImgLocator){
           await expect(this.page.locator('.hero--alien-ufo-wrapper')).toBeVisible();
         }
-        console.log(`${click.MainHeader} is Tested Successfull`)
+        console.log(`${click.MainHeader} is Tested Successfull`);
       }
       if(click.MainHeaderLink){
         await expect(this.page.getByRole('heading', { name: click.MainHeaderLink  })).toBeVisible();
@@ -423,7 +430,312 @@ async MainPageTest(productMainPageList: any, locator:string) {
       }
       await this.page.getByRole('button', { name: click.CarouselNextButton }).click();
     }
-    await this.page.getByLabel('menu', { exact: true }).getByRole('link', { name: 'Products' }).click();
-    await this.page.getByRole('link', { name: 'Shop our site' }).click();
+    for (const click of cheezitDropdown) {
+      const menu = this.page.getByLabel('menu', { exact: true });
+      await menu.hover({ force: true });
+      const dropdownItem = this.page.getByRole('link', { name: click, exact: true });
+      await dropdownItem.waitFor({ state: 'visible' });
+      await dropdownItem.click();
+      await this.page.waitForLoadState('domcontentloaded');
+      await this.page.goBack();
+      console.log(`${click} is tested successfully`);
+    }
+    for(const click of cheezitDropdownShop){
+      await this.page.getByLabel('menu', { exact: true }).click();
+      if(click === 'SHOP ALL'){
+       await this.page.getByRole('link', { name: click, exact: true }).click();
+      }else{
+       await this.page.getByRole('link', { name: click }).click();
+      }
+      await this.page.waitForTimeout(1000);
+      await this.page.goBack();
+      console.log(`${click} is tested successfully`);
+    }
+
+    await testpage.roleLink('Our Impact');
+    // await this.page.getByRole('link', { name:  }).click();
+    await expect(this.page.getByRole('heading', { name: 'Our Impact' })).toBeVisible();
+    await expect(this.page.locator('.section--in-viewport > .content_wrapper').first()).toBeVisible();
+    await expect(this.page.getByText('At Cheez-It®, we’re dedicated')).toBeVisible();
+    await testpage.roleLink('Cheez-it grooves, orginal,' );
+    // await this.page.getByRole('link', { name: 'Cheez-it grooves, orginal,' }).click();
+    const page1Promise = this.page.waitForEvent('popup');
+    await this.page.waitForTimeout(4000);
+    (await page1Promise).close();
+    await testpage.roleLink('Accurate Box Company');
+    // await this.page.getByRole('link', { name: 'Accurate Box Company' }).click();
+    await this.page.getByLabel('Close the mobile video player').click();
+    await this.page.goBack();
+    await this.page.getByLabel('menu', { exact: true }).getByRole('link', { name: 'Recipes' }).click();
+    await this.page.getByRole('heading', { name: 'Recipes' }).locator('span').click();
+    await this.page.waitForTimeout(2000);
+    await this.page.goBack();
+    await this.page.getByLabel('menu', { exact: true }).getByRole('link', { name: 'Cheez-It® Bowl' }).click();
+    await expect(this.page.getByRole('img', { name: 'Cheez-It Citrus Bowl Logo' })).toBeVisible();
+    await expect(this.page.getByRole('heading', { name: 'Congrats to the 2024 Cheez-It' })).toBeVisible();
+    await expect(this.page.getByText('As the cheeziest sponsor of')).toBeVisible();
+    await this.page.getByRole('link', { name: 'Shop Cheez-It® Football Swag' }).click();
+    await this.page.waitForTimeout(2000);
+    await this.page.goBack();
+    await this.page.getByRole('link', { name: 'Cheez-It Citrus Bowl Trophies' }).click();
+    const page2Promise = this.page.waitForEvent('popup');
+    await this.page.waitForTimeout(4000);
+    (await page2Promise).close();
+    await this.page.goBack();
+    await this.page.getByRole('link', { name: 'En español' }).click();
+    await this.page.getByRole('link', { name: 'In English' }).click();
+    // await this.page.getByRole('link', { name: ' Where to buy' }).click();
+    // await this.page.waitForTimeout(8000);
+    // await expect(this.page.getByLabel('Shop Cheez-It® Original Snack')).toBeVisible();
+    // await expect(this.page.locator('.ps-product-image > div > img')).toBeVisible();
+    // await this.page.getByLabel('Close the shop now shopping').click();
+    await this.page.getByRole('link', { name: ' Promotions' }).click();
+    await expect(this.page.locator('.section--in-viewport > .content_wrapper')).toBeVisible();
+    await this.page.goBack();
+    await this.page.getByLabel('Sign In / Sign Up / My Account').click();
+    await expect(this.page.getByText('Customer Login')).toBeVisible();
+    await expect(this.page.getByRole('heading', { name: 'New Customers' })).toBeVisible();
+    await this.page.goBack();
+    await this.page.getByRole('link', { name: 'Country Selector' }).click();
+    await expect(this.page.getByRole('heading', { name: 'Country Selector' })).toBeVisible();
+    await this.page.goBack();
+
+    await this.page.waitForTimeout(4000);
+    await this.page.getByRole('link', { name: 'SHOP ALL', exact: true }).click();
+    await this.page.getByRole('button', { name: 'QuickView Cheez-It® Smoked' }).click();
+    await this.page.getByRole('button', { name: 'QuickView Cheez-It® Smoked' }).click();
+    await this.page.waitForTimeout(6000);
+    try{
+      await expect(this.page.locator('#modal-content-83 iframe').contentFrame().getByText('Cheez-It® Smoked Bundle', { exact: true })).toBeVisible();
+      await expect(this.page.locator('#modal-content-83 iframe').contentFrame().getByText('For the snacking adventurer,')).toBeVisible();
+      await expect(this.page.locator('#modal-content-83 iframe').contentFrame().getByText('$')).toBeVisible();
+      await this.page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Increment').click();
+      await this.page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Increment').click();
+      await this.page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Decrement').click();
+      await this.page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Decrement').click();
+    }catch(error){
+      console.log(`${error} Shop card is not Visible`)
+    }
+    // await page.getByRole('dialog').click();
+    // await page.locator('#modal-content-83 iframe').contentFrame().getByText('Cheez-It® Smoked Bundle For').click();
+    await this.page.getByRole('button', { name: '' }).click();
+    await this.page.locator('[id="\\31 "]').getByRole('button', { name: 'Add to Cart' }).click();
+    await expect(this.page.getByRole('img', { name: 'Cheez-It® Smoked Bundle' })).toBeVisible();
+    await expect(this.page.getByRole('heading', { name: 'Cheez-It® Smoked Bundle' }).locator('span')).toBeVisible();
+    await expect(this.page.getByText('For the snacking adventurer,')).toBeVisible();
+    await this.page.getByLabel('Add to Cart').click();
+    await this.page.goBack();
+    await this.page.locator('[id="\\32 "]').getByRole('button', { name: 'Add to Cart' }).click();
+    await this.page.locator('div').filter({ hasText: /^Your Cart$/ }).click();
+    await expect(this.page.getByText('Your order is eligible for')).toBeVisible();
+    await expect(this.page.getByTitle('ILTHY® for Cheez-It™ Club Football', { exact: true })).toBeVisible();
+    await expect(this.page.getByRole('link', { name: ' My Cart 1 items' })).toBeVisible();
+    await this.page.getByText('Summary').click();
+    await this.page.getByRole('button', { name: 'Checkout' }).click();
+    await this.page.getByText('Checkout', { exact: true }).click();
+    await this.page.getByRole('textbox', { name: '* Email Address Email Address' }).click();
+    await this.page.getByRole('textbox', { name: '* Email Address Email Address' }).fill('mathura');
+    await this.page.getByText('Shipping Address').click();
+    await this.page.getByRole('textbox', { name: '* First Name' }).click();
+    await this.page.getByRole('textbox', { name: '* Last Name' }).click();
+    await this.page.getByRole('textbox', { name: '* First Name' }).click();
+    await this.page.getByRole('textbox', { name: '* First Name' }).fill('mm');
+    await this.page.getByPlaceholder('Company (Optional)').click();
+    await this.page.getByPlaceholder('Company (Optional)').fill('gg');
+    await this.page.getByPlaceholder('Street Address: Line 1').click();
+    await this.page.getByPlaceholder('Street Address: Line 1').fill('jj');
+    await this.page.locator('#co-shipping-form').click();
+    await this.page.locator('select[name="region_id"]').selectOption('18');
+    await this.page.getByPlaceholder('Zip/Postal Code').click();
+    await this.page.getByPlaceholder('Zip/Postal Code').fill('88');
+    await this.page.getByPlaceholder('Phone Number').click();
+    await this.page.getByPlaceholder('Phone Number').fill('6667889962');
+    await this.page.getByText('Shipping Methods').click();
+    await this.page.locator('span').filter({ hasText: 'Order Summary' }).click();
+    await this.page.getByRole('dialog').click();
+    await this.page.getByRole('link', { name: '< Back to Shopping' }).click();
+    
+    await this.page.waitForTimeout(4000);
+    await this.page.getByRole('link',{ name: ' My Cart' }).click();
+    const items = this.page.locator('#maincontent').getByText('You have no items in your');
+    if(await items.isVisible()){
+      await this.page.goBack();
+    }else{
+      const remove = this.page.getByRole('link', { name: 'Remove' });
+      if(await remove.isVisible()){
+        await remove.click();
+        await this.page.getByRole('button', { name: 'OK', exact: true }).click();
+        await expect(this.page.getByText('You have no items in your')).toBeVisible();
+        await this.page.getByRole('button', { name: 'Close' }).click();
+      }else{
+        console.log(`remove button is not visible`)
+      }
+    }
+  }
+
+  async cheezitProductPage(cheezitProductPage, testpage){
+    await testpage.acceptCookies();
+    for (const click of cheezitProductPage){
+      const close = this.page.getByLabel('Close Modal');
+      if(await close.isVisible()){
+        await close.click();
+      }
+      if(click.mainpageHeader){
+       await expect(this.page.getByRole('heading', { name: click.mainpageHeader})).toBeVisible();
+      }
+      if(click.mainpageClick){
+        await testpage.roleLink(click.mainpageClick);
+        await expect(this.page.getByRole('img', { name: click.cardImg })).toBeVisible();
+        await expect(this.page.getByRole('heading', { name: click.cardMainHeader })).toBeVisible();
+      }
+      if(click.cardClick){
+        if(click.cardClick === 'Cheez-It® Snack Mix'){
+          await testpage.roleLinkExact(click.cardClick);
+        }else{
+          await testpage.roleLink(click.cardClick);
+        }
+        try{
+          await expect(this.page.locator('section').filter({ hasText: click.cardSectionImg }).locator('img').first()).toBeVisible();
+          await expect(this.page.getByRole('heading', { name: click.cardProductHeader })).toBeVisible();
+          await expect(this.page.getByText(click.cardProductText)).toBeVisible();
+          if(click.cardProductFirstHeader){
+            await expect(this.page.getByRole('heading', { name:  click.cardProductFirstHeader})).toBeVisible();
+            await expect(this.page.getByRole('heading', { name:  click.cardProductSecoundHeader})).toBeVisible();
+            await expect(this.page.getByText(click.cardProductFirstText)).toBeVisible();
+            await expect(this.page.getByText(click.cardProductSecoundText)).toBeVisible();
+          }
+        }catch(error){
+          console.log(`${error} cardpage is not Visible`);
+        }
+      }
+      if(click.cardProductLink){   
+        await testpage.whereToBuyLocatorLink(click.cardProductLink)
+        await this.page.waitForTimeout(20000);
+        await this.page.waitForLoadState('load');
+        await this.page.waitForLoadState('domcontentloaded');
+        try{
+          await expect(this.page.getByLabel(click.cardProductWhereToBuyFirstImg).locator('img').first()).toBeVisible();
+          await expect(this.page.getByLabel(click.cardProductWhereToBuySecoundImg).locator('img').nth(1)).toBeVisible();
+          await expect(this.page.getByLabel(click.cardProductLabel)).toBeVisible();
+          await this.page.getByLabel(click.cardProductClose).click();
+        }catch(error){
+          console.log(`${error} cardpage is not Visible`)
+        }
+      }
+      if(click.cardProductViewButton){
+        await testpage.roleLink(click.cardProductViewButton);
+        const page1Promise = this.page.waitForEvent('popup');
+        // (await page1Promise).getByRole('button', { name: 'OK', exact: true }).click();
+        (await page1Promise).close();
+        await this.page.goBack();
+      }else{
+        await this.page.goBack();
+      }
+      if(click.Goback){
+        await this.page.goBack();
+      }
+     }
+  };
+
+  async cheezitFooter(cheezitFooter,testpage){
+    await testpage.acceptCookies();
+    const close = this.page.getByLabel('Close Modal');
+    await this.page.waitForTimeout(5000);
+    if(await close.isVisible()){
+      await close.click();
+    }
+    for (const click of cheezitFooter){
+      if(click.footerLinkExact){
+        await testpage.roleLinkExact(click.footerLinkExact);
+        if(click.footerLinkExact === 'Shop All'){
+          await this.page.waitForTimeout(4000);
+          await expect(this.page.getByRole('heading', { name: 'Welcome to Cheez-It®' })).toBeVisible();
+          await expect(this.page.getByText('New Flavors & Merch Have')).toBeVisible();
+          await expect(this.page.getByLabel('All Products').getByText('All Products')).toBeVisible();
+          await expect(this.page.locator('#shopify-section-ci-cta div').filter({ hasText: 'WANT IT WANT IT WANT IT WANT' }).nth(1)).toBeVisible();
+        }
+        if(click.footerLinkExact === 'Where To Buy'){
+          await this.page.waitForTimeout(6000);
+          const close = this.page.getByLabel('Close the shop now shopping');
+          if(await close.isVisible()){
+            await close.click()
+          }
+        }
+        if(click.footerLinkExact === 'Promotions'){
+          await this.page.waitForTimeout(6000);
+          await expect(this.page.locator('.section--in-viewport > .content_wrapper')).toBeVisible();
+        }
+      }
+      if(click.footerLink){
+        await testpage.roleLink(click.footerLink);
+        if(click.footerLink === 'Videos'){
+          await this.page.waitForTimeout(2000);
+          await expect(this.page.locator('section').filter({ hasText: 'Videos' }).locator('div').first()).toBeVisible();
+        }
+        if(click.footerLink === 'FAQ'){
+          await this.page.waitForTimeout(2000);
+          await expect(this.page.locator('#container-ab915426f7 div').filter({ hasText: 'Frequently Asked Questions' }).nth(2)).toBeVisible();
+        }
+        if(click.footerLink === 'Contact Us'){
+          await this.page.waitForTimeout(2000);
+          await expect(this.page.getByRole('heading', { name: click.footerLink })).toBeVisible();
+        }
+        if(click.footerLink === 'Site Map'){
+          await this.page.waitForTimeout(2000);
+          await expect(this.page.getByRole('heading', { name: 'Cheez-It® Site Map' })).toBeVisible();
+        }
+        if(click.footerLink === 'Shipping & Returns'){
+          await expect(this.page.getByRole('heading', { name: 'Shipping & Returns' })).toBeVisible();
+          await expect(this.page.getByText('Do you offer free shipping?')).toBeVisible();
+        }
+      }
+      if(click.footerLabelLink){
+        const menue = this.page.getByLabel('footer main navigation').getByRole('link', { name: click.footerLabelLink });
+        await this.page.waitForTimeout(4000); 
+        if(await menue.isVisible()){
+         await menue.click();
+         console.log(`${click.footerLabelLink} Click Tested Successfully`);
+        }else{
+          console.log(`${click.footerLabelLink} is not visible`);
+        }
+        if(click.footerLabelLink === 'Recipes'){
+          await this.page.waitForTimeout(2000);
+          await expect(this.page.getByRole('heading', { name: 'Recipes' }).locator('span')).toBeVisible();
+          await expect(this.page.locator('.section--in-viewport > .content_wrapper').first()).toBeVisible();
+        }
+        if(click.footerLabelLink === 'Cheez-It® Bowl'){
+          await this.page.waitForTimeout(2000); 
+          await this.page.getByRole('img', { name: 'Cheez-It Citrus Bowl Logo' }).click();
+        }
+      }
+      if(click.footerLableText){
+        const cookies =  this.page.getByLabel('footer secondary navigation').getByText(click.footerLableText);
+        if(await cookies.isVisible()){
+         await cookies.click();
+        }else{
+          console.log(`${cookies} is not visible`);
+        }
+        await this.page.getByRole('button', { name: click.button }).click();
+      }
+      if(click.Goback){
+        await this.page.goBack();
+      }  
+      if(click.closeTab){
+        const page2Promise = this.page.waitForEvent('popup');
+        await this.page.waitForLoadState('domcontentloaded');
+        (await page2Promise).close();
+      } 
+    }
+  }
+
+  async newone (headingpage: any){
+    for (const click of headingpage){
+     const menu = this.page.getByLabel('menu', { exact: true }).getByRole('link', { name: click.menuLink });
+     if(await menu.isVisible()){
+      await menu.click();
+      }else{
+        console.log(`${menu} is not visible`);
+     }
+    }
   }
 }

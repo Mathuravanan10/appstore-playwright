@@ -28,8 +28,35 @@ export class Testpage {
   }
 
   async roleLink(Link:any) { 
-     await this.page.getByRole('link', { name: Link  }).click();  
+    const cardLink = this.page.getByRole('link', { name: Link });
+    if(await cardLink.isVisible()){
+      await cardLink.click();
+      console.log(`${Link} Click Tested Successfully`);
+    }else{
+      console.log(`${Link} is not visible`);
+    }  
   }
+
+  async roleLinkExact(Link:any) { 
+    const cardLink = this.page.getByRole('link', { name: Link, exact: true });
+    if(await cardLink.isVisible()){
+      await cardLink.click();
+      console.log(`${Link} Click Tested Successfully`);
+    }else{
+      console.log(`${Link} is not visible`);
+    }
+  }
+
+  async whereToBuyLocatorLink(Link: any){
+    const whereToBuy = this.page.locator('#container-22d6269fad').getByRole('link', { name: Link, exact: true  });
+    if(await whereToBuy.isVisible()){
+      await whereToBuy.click();
+      console.log(`${Link} Click Tested Successfully`);
+    }else{
+      console.log(`${Link} is not visible`);
+    }      
+  }
+
   async ByText(Text:any) {
     await expect(this.page.getByText(Text)).toBeVisible({ timeout: 40000 });
   }

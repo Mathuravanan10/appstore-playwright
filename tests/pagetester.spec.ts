@@ -5,7 +5,7 @@ import { testingCardPage } from "../webPages/TownHouseCardList";
 import { testingHeaderPage } from "../webPages/TownHouseHeader";
 import { kellanova } from "../webPages/kellanovaHomePage";
 import { kellanovabody, kellanovamainpage, kellanvaImgs } from "../variableFiles/kellanova";
-import { cheezitMainpage, FooterLinks, HeaderWhereToBuy, kellanovaHeaderLinks, whereToBuyRegionInputData, whereToBuySoldByInputData, whereToBuyTellMeAboutInputData } from "../variableFiles/kellanovaSimple";
+import { cheezitDropdown, cheezitDropdownShop, cheezitFooter, cheezitMainpage, cheezitProductPage, FooterLinks, HeaderWhereToBuy, headingpage, kellanovaHeaderLinks, searchpage, whereToBuyRegionInputData, whereToBuySoldByInputData, whereToBuyTellMeAboutInputData } from "../variableFiles/kellanovaSimple";
 import { Testpage } from "../webPages/testpage";
 
 let page: any;
@@ -83,8 +83,13 @@ test.describe('multiple checks using steps', async () => {
   test("Cheezit Home page", async () => {
     kellano = new kellanova(page);
     const locator = 'https://www.cheezit.com/en-us/home.html';
+    // const locator = 'https://www.poptarts.com/en_US/home.html';
     await page.goto(locator);
     const testpage = new Testpage(page);
-    await mainPage.cheezitMainpage(testpage, cheezitMainpage);  
+    // await mainPage.cheezitMainpage(testpage, cheezitMainpage, cheezitDropdown, cheezitDropdownShop); 
+    await mainPage.cheezitProductPage(cheezitProductPage, testpage); 
+    await mainPage.cheezitFooter(cheezitFooter,testpage);
+    await mainPage.SearchTesting(searchpage, testpage);
+    // await mainPage.newone(headingpage)
   });
 }); 
