@@ -1,17 +1,17 @@
 export const managepurchaseorder = [
     {
-        orderName: '$orderName',
+        orderName: '$Manage_po',
         currency: '$currency',
-        supplier: '$supplier',
-        groupinput: '$group',
-        Qragainzation: '$qragainzation',
-        company: '$company',
-        material: '$material',
+        supplier: '$supplierId',
+        groupinput: '$pur_Group',
+        Qragainzation: '$pur_org',
+        company: '$company_code',
+        material: '$material_No',
         orderQuantity: '$orderQuantity',
         netOrder:'$netOrder',
     }
 ];
 
-export const userName = '$userName';
+export const userName = '$Username';
 
-export const userPassword = '$userPassword';
+export const userPassword = '$password';
