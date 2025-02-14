@@ -4,7 +4,7 @@ import { productMainPageList, productMainHeaderList, productFooterList, menuPage
 import { testingCardPage } from "../webPages/TownHouseCardList";
 import { testingHeaderPage } from "../webPages/TownHouseHeader";
 import { kellanova } from "../webPages/kellanovaHomePage";
-import { kellanovabody, kellanovamainpage, kellanvaImgs } from "../variableFiles/kellanova";
+import { kellanovabody, kellanovamainpage, kellanvaImgs, productDetails } from "../variableFiles/kellanova";
 import { cheezitDropdown, cheezitDropdownShop, cheezitFooter, cheezitMainpage, cheezitProductPage, FooterLinks, HeaderWhereToBuy, headingpage, kellanovaHeaderLinks, searchpage, whereToBuyRegionInputData, whereToBuySoldByInputData, whereToBuyTellMeAboutInputData } from "../variableFiles/kellanovaSimple";
 import { Testpage } from "../webPages/testpage";
 
@@ -71,25 +71,28 @@ test.describe('multiple checks using steps', async () => {
   //   await mainPage.SearchTesting()
   // });
 
-  // await test.step("Kellanova Home page", async () => {
-  //   test.setTimeout(600000);
-  //   kellano = new kellanova(page);
-  //   const locator = 'https://www.kellanovaus.com/us/en/home.html';
-  //   await page.goto(locator);
-  //   // await kellano.kellanovaHomePage(kellanovamainpage, locator);
-  //   await kellano.kellanovaHomePageImgs(kellanvaImgs, locator, kellanovabody);
-  // });
-
-  test("Cheezit Home page", async () => {
+  test("Kellanova Home page", async () => {
+    test.setTimeout(600000);
     kellano = new kellanova(page);
-    const locator = 'https://www.cheezit.com/en-us/home.html';
-    // const locator = 'https://www.poptarts.com/en_US/home.html';
+    const locator = 'https://www.kellanovaus.com/us/en/home.html';
     await page.goto(locator);
     const testpage = new Testpage(page);
-    // await mainPage.cheezitMainpage(testpage, cheezitMainpage, cheezitDropdown, cheezitDropdownShop); 
-    await mainPage.cheezitProductPage(cheezitProductPage, testpage); 
-    await mainPage.cheezitFooter(cheezitFooter,testpage);
-    await mainPage.SearchTesting(searchpage, testpage);
-    // await mainPage.newone(headingpage)
+    // await kellano.kellanovaHomePage(kellanovamainpage, locator);
+    // await kellano.kellanovaHomePageImgs(kellanvaImgs, locator, kellanovabody);
+    // await kellano.kellanovaHeadingPart(testpage, productDetails);
+    await kellano.sapI5();
   });
+
+  // test("Cheezit Home page", async () => {
+  //   kellano = new kellanova(page);
+  //   const locator = 'https://www.cheezit.com/en-us/home.html';
+  //   // const locator = 'https://www.poptarts.com/en_US/home.html';
+  //   await page.goto(locator);
+  //   const testpage = new Testpage(page);
+  //   await mainPage.cheezitMainpage(testpage, cheezitMainpage, cheezitDropdown, cheezitDropdownShop); 
+  //   await mainPage.cheezitProductPage(cheezitProductPage, testpage); 
+  //   await mainPage.cheezitFooter(cheezitFooter,testpage);
+  //   await mainPage.SearchTesting(searchpage, testpage);
+  //   // await mainPage.newone(headingpage)
+  // });
 }); 

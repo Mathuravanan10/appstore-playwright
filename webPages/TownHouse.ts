@@ -500,77 +500,77 @@ async MainPageTest(productMainPageList: any, locator:string) {
     await expect(this.page.getByRole('heading', { name: 'Country Selector' })).toBeVisible();
     await this.page.goBack();
 
-    await this.page.waitForTimeout(4000);
-    await this.page.getByRole('link', { name: 'SHOP ALL', exact: true }).click();
-    await this.page.getByRole('button', { name: 'QuickView Cheez-It® Smoked' }).click();
-    await this.page.getByRole('button', { name: 'QuickView Cheez-It® Smoked' }).click();
-    await this.page.waitForTimeout(6000);
-    try{
-      await expect(this.page.locator('#modal-content-83 iframe').contentFrame().getByText('Cheez-It® Smoked Bundle', { exact: true })).toBeVisible();
-      await expect(this.page.locator('#modal-content-83 iframe').contentFrame().getByText('For the snacking adventurer,')).toBeVisible();
-      await expect(this.page.locator('#modal-content-83 iframe').contentFrame().getByText('$')).toBeVisible();
-      await this.page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Increment').click();
-      await this.page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Increment').click();
-      await this.page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Decrement').click();
-      await this.page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Decrement').click();
-    }catch(error){
-      console.log(`${error} Shop card is not Visible`)
-    }
-    // await page.getByRole('dialog').click();
-    // await page.locator('#modal-content-83 iframe').contentFrame().getByText('Cheez-It® Smoked Bundle For').click();
-    await this.page.getByRole('button', { name: '' }).click();
-    await this.page.locator('[id="\\31 "]').getByRole('button', { name: 'Add to Cart' }).click();
-    await expect(this.page.getByRole('img', { name: 'Cheez-It® Smoked Bundle' })).toBeVisible();
-    await expect(this.page.getByRole('heading', { name: 'Cheez-It® Smoked Bundle' }).locator('span')).toBeVisible();
-    await expect(this.page.getByText('For the snacking adventurer,')).toBeVisible();
-    await this.page.getByLabel('Add to Cart').click();
-    await this.page.goBack();
-    await this.page.locator('[id="\\32 "]').getByRole('button', { name: 'Add to Cart' }).click();
-    await this.page.locator('div').filter({ hasText: /^Your Cart$/ }).click();
-    await expect(this.page.getByText('Your order is eligible for')).toBeVisible();
-    await expect(this.page.getByTitle('ILTHY® for Cheez-It™ Club Football', { exact: true })).toBeVisible();
-    await expect(this.page.getByRole('link', { name: ' My Cart 1 items' })).toBeVisible();
-    await this.page.getByText('Summary').click();
-    await this.page.getByRole('button', { name: 'Checkout' }).click();
-    await this.page.getByText('Checkout', { exact: true }).click();
-    await this.page.getByRole('textbox', { name: '* Email Address Email Address' }).click();
-    await this.page.getByRole('textbox', { name: '* Email Address Email Address' }).fill('mathura');
-    await this.page.getByText('Shipping Address').click();
-    await this.page.getByRole('textbox', { name: '* First Name' }).click();
-    await this.page.getByRole('textbox', { name: '* Last Name' }).click();
-    await this.page.getByRole('textbox', { name: '* First Name' }).click();
-    await this.page.getByRole('textbox', { name: '* First Name' }).fill('mm');
-    await this.page.getByPlaceholder('Company (Optional)').click();
-    await this.page.getByPlaceholder('Company (Optional)').fill('gg');
-    await this.page.getByPlaceholder('Street Address: Line 1').click();
-    await this.page.getByPlaceholder('Street Address: Line 1').fill('jj');
-    await this.page.locator('#co-shipping-form').click();
-    await this.page.locator('select[name="region_id"]').selectOption('18');
-    await this.page.getByPlaceholder('Zip/Postal Code').click();
-    await this.page.getByPlaceholder('Zip/Postal Code').fill('88');
-    await this.page.getByPlaceholder('Phone Number').click();
-    await this.page.getByPlaceholder('Phone Number').fill('6667889962');
-    await this.page.getByText('Shipping Methods').click();
-    await this.page.locator('span').filter({ hasText: 'Order Summary' }).click();
-    await this.page.getByRole('dialog').click();
-    await this.page.getByRole('link', { name: '< Back to Shopping' }).click();
+    // await this.page.waitForTimeout(4000);
+    // await this.page.getByRole('link', { name: 'SHOP ALL', exact: true }).click();
+    // await this.page.getByRole('button', { name: 'QuickView Cheez-It® Smoked' }).click();
+    // await this.page.getByRole('button', { name: 'QuickView Cheez-It® Smoked' }).click();
+    // await this.page.waitForTimeout(6000);
+    // try{
+    //   await expect(this.page.locator('#modal-content-83 iframe').contentFrame().getByText('Cheez-It® Smoked Bundle', { exact: true })).toBeVisible();
+    //   await expect(this.page.locator('#modal-content-83 iframe').contentFrame().getByText('For the snacking adventurer,')).toBeVisible();
+    //   await expect(this.page.locator('#modal-content-83 iframe').contentFrame().getByText('$')).toBeVisible();
+    //   await this.page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Increment').click();
+    //   await this.page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Increment').click();
+    //   await this.page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Decrement').click();
+    //   await this.page.locator('#modal-content-83 iframe').contentFrame().getByLabel('Quantity Decrement').click();
+    // }catch(error){
+    //   console.log(`${error} Shop card is not Visible`)
+    // }
+    // // await page.getByRole('dialog').click();
+    // // await page.locator('#modal-content-83 iframe').contentFrame().getByText('Cheez-It® Smoked Bundle For').click();
+    // await this.page.getByRole('button', { name: '' }).click();
+    // await this.page.locator('[id="\\31 "]').getByRole('button', { name: 'Add to Cart' }).click();
+    // await expect(this.page.getByRole('img', { name: 'Cheez-It® Smoked Bundle' })).toBeVisible();
+    // await expect(this.page.getByRole('heading', { name: 'Cheez-It® Smoked Bundle' }).locator('span')).toBeVisible();
+    // await expect(this.page.getByText('For the snacking adventurer,')).toBeVisible();
+    // await this.page.getByLabel('Add to Cart').click();
+    // await this.page.goBack();
+    // await this.page.locator('[id="\\32 "]').getByRole('button', { name: 'Add to Cart' }).click();
+    // await this.page.locator('div').filter({ hasText: /^Your Cart$/ }).click();
+    // await expect(this.page.getByText('Your order is eligible for')).toBeVisible();
+    // await expect(this.page.getByTitle('ILTHY® for Cheez-It™ Club Football', { exact: true })).toBeVisible();
+    // await expect(this.page.getByRole('link', { name: ' My Cart 1 items' })).toBeVisible();
+    // await this.page.getByText('Summary').click();
+    // await this.page.getByRole('button', { name: 'Checkout' }).click();
+    // await this.page.getByText('Checkout', { exact: true }).click();
+    // await this.page.getByRole('textbox', { name: '* Email Address Email Address' }).click();
+    // await this.page.getByRole('textbox', { name: '* Email Address Email Address' }).fill('mathura');
+    // await this.page.getByText('Shipping Address').click();
+    // await this.page.getByRole('textbox', { name: '* First Name' }).click();
+    // await this.page.getByRole('textbox', { name: '* Last Name' }).click();
+    // await this.page.getByRole('textbox', { name: '* First Name' }).click();
+    // await this.page.getByRole('textbox', { name: '* First Name' }).fill('mm');
+    // await this.page.getByPlaceholder('Company (Optional)').click();
+    // await this.page.getByPlaceholder('Company (Optional)').fill('gg');
+    // await this.page.getByPlaceholder('Street Address: Line 1').click();
+    // await this.page.getByPlaceholder('Street Address: Line 1').fill('jj');
+    // await this.page.locator('#co-shipping-form').click();
+    // await this.page.locator('select[name="region_id"]').selectOption('18');
+    // await this.page.getByPlaceholder('Zip/Postal Code').click();
+    // await this.page.getByPlaceholder('Zip/Postal Code').fill('88');
+    // await this.page.getByPlaceholder('Phone Number').click();
+    // await this.page.getByPlaceholder('Phone Number').fill('6667889962');
+    // await this.page.getByText('Shipping Methods').click();
+    // await this.page.locator('span').filter({ hasText: 'Order Summary' }).click();
+    // await this.page.getByRole('dialog').click();
+    // await this.page.getByRole('link', { name: '< Back to Shopping' }).click();
     
-    await this.page.waitForTimeout(4000);
-    await this.page.getByRole('link',{ name: ' My Cart' }).click();
-    const items = this.page.locator('#maincontent').getByText('You have no items in your');
-    if(await items.isVisible()){
-      await this.page.goBack();
-    }else{
-      const remove = this.page.getByRole('link', { name: 'Remove' });
-      if(await remove.isVisible()){
-        await remove.click();
-        await this.page.getByRole('button', { name: 'OK', exact: true }).click();
-        await expect(this.page.getByText('You have no items in your')).toBeVisible();
-        await this.page.getByRole('button', { name: 'Close' }).click();
-      }else{
-        console.log(`remove button is not visible`)
-      }
-    }
+    // await this.page.waitForTimeout(4000);
+    // await this.page.getByRole('link',{ name: ' My Cart' }).click();
+    // const items = this.page.locator('#maincontent').getByText('You have no items in your');
+    // if(await items.isVisible()){
+    //   await this.page.goBack();
+    // }else{
+    //   const remove = this.page.getByRole('link', { name: 'Remove' });
+    //   if(await remove.isVisible()){
+    //     await remove.click();
+    //     await this.page.getByRole('button', { name: 'OK', exact: true }).click();
+    //     await expect(this.page.getByText('You have no items in your')).toBeVisible();
+    //     await this.page.getByRole('button', { name: 'Close' }).click();
+    //   }else{
+    //     console.log(`remove button is not visible`)
+    //   }
+    // }
   }
 
   async cheezitProductPage(cheezitProductPage, testpage){
@@ -702,6 +702,18 @@ async MainPageTest(productMainPageList: any, locator:string) {
           await this.page.waitForTimeout(2000);
           await expect(this.page.getByRole('heading', { name: 'Recipes' }).locator('span')).toBeVisible();
           await expect(this.page.locator('.section--in-viewport > .content_wrapper').first()).toBeVisible();
+          await this.page.getByPlaceholder('Find a recipe').click();
+          await this.page.getByPlaceholder('Find a recipe').fill('Cheez-It® Apple Pie');
+          await this.page.locator('#recipe-search-submit').click();
+          await this.page.getByRole('link', { name: 'Cheez-It® Apple Pie Cheez-It' }).click();
+          await expect(this.page.getByRole('img', { name: 'Cheez-It&reg; Apple Pie' })).toBeVisible();
+          await expect(this.page.getByRole('heading', { name: 'Cheez-It® Apple Pie' })).toBeVisible();
+          await expect(this.page.getByText('Experience the ultimate')).toBeVisible();
+          await expect(this.page.getByText('PREP TIME (MIN):')).toBeVisible();
+          await expect(this.page.getByText('TOTAL TIME (MIN):')).toBeVisible();
+          await expect(this.page.getByText('SERVINGS 10 to')).toBeVisible();
+          await this.page.goBack();
+          await this.page.goBack();
         }
         if(click.footerLabelLink === 'Cheez-It® Bowl'){
           await this.page.waitForTimeout(2000); 
