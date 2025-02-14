@@ -6,7 +6,7 @@ test.describe('multiple check testcase function', async () => {
   test.setTimeout(800000);
   let page:any;
 
-  test('Home page test',async () => {
+  test('SapUi5 test',async () => {
     const browser = await chromium.launch({ headless: false });
     const context = await browser.newContext();
     page = await context.newPage();
@@ -23,6 +23,7 @@ test.describe('multiple check testcase function', async () => {
     await page.waitForTimeout(8000);
     for(const click of managepurchaseorder){
       // await page.goto('https://my415865.s4hana.cloud.sap/ui#/Shell-home');
+      await page.getByLabel('Open Search').click();
       await page.getByPlaceholder('Search In: "My Favorites"').click();
       await page.getByPlaceholder('Search In: "My Favorites"').fill(click.orderName);
       await page.getByPlaceholder('Search In: "My Favorites"').press('Enter');
