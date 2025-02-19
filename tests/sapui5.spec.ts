@@ -2,7 +2,7 @@ import { test, expect, Page, selectors, chromium } from '@playwright/test';
 import { css, xpath } from 'playwright-ui5'
 import { managepurchaseorder, userName, userPassword } from './sapui5variable';
 
-test.describe('multiple check testcase function', async () => {
+test.describe(() => {
   test.setTimeout(800000);
   let page:any;
 
