@@ -6,10 +6,10 @@ test.describe('multiple check testcase function', async () => {
   test.setTimeout(800000);
   let page:any;
 
-  test('SapUi5 test',async () => {
-    const browser = await chromium.launch({ headless: false });
-    const context = await browser.newContext();
-    page = await context.newPage();
+  test('SapUi5 test',async ({browser}) => {
+    // const browser = await chromium.launch({ headless: false });
+    // const context = await browser.newContext();
+    page = await browser.newPage();
     await selectors.register('ui5-css', css);
     await selectors.register('ui5-xpath', xpath);
     
