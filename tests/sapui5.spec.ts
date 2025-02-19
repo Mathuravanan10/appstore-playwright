@@ -4,12 +4,14 @@ import { managepurchaseorder, userName, userPassword } from './sapui5variable';
 
 test.describe(() => {
   test.setTimeout(800000);
-  let page:any;
+  let page: Page;
+  test.beforeAll('SapUi5 test',async ({browser}) =>{
+  page = await browser.newPage();
+});
 
-  test('SapUi5 test',async ({browser}) => {
+  test('s4 hana sap ui 5',async () => {
     // const browser = await chromium.launch({ headless: false });
     // const context = await browser.newContext();
-    page = await browser.newPage();
     await selectors.register('ui5-css', css);
     await selectors.register('ui5-xpath', xpath);
     
@@ -49,7 +51,7 @@ test.describe(() => {
       const Qragainzation = page.locator('ui5-xpath=//sap.m.Input[@id="ui.ssuite.s2p.mm.pur.po.manage.st.s1::sap.suite.ui.generic.template.ObjectPage.view.Details::C_PurchaseOrderTP--GeneralInformationFacet2::PurchasingOrganization::Field-input"]');
       await Qragainzation.click();
       const Qragainzationtext = Qragainzation.textContent();
-      if(Qragainzationtext === ''){
+      if(await Qragainzationtext === ''){
         await Qragainzation.type(click.Qragainzation);
         await Qragainzation.press('Enter');
         await page.waitForTimeout(2000);
