@@ -5,7 +5,7 @@ import { managepurchaseorder, userName, userPassword } from './sapui5variable';
 test.describe(() => {
   test.setTimeout(800000);
   let page: Page;
-  test.beforeAll('SapUi5 test',async ({browser}) =>{
+  test.beforeAll('Sap Ui 5 test',async ({browser}) =>{
   page = await browser.newPage();
 });
 
