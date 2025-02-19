@@ -1,15 +1,15 @@
-import { test, expect, Page, selectors, chromium } from '@playwright/test';
+import { test, Page, selectors } from '@playwright/test';
 import { css, xpath } from 'playwright-ui5'
 import { managepurchaseorder, userName, userPassword } from './sapui5variable';
 
 test.describe(() => {
   test.setTimeout(800000);
   let page: Page;
-  test.beforeAll('Sap Ui 5 test',async ({browser}) =>{
+  test.beforeAll(async ({browser}) =>{
   page = await browser.newPage();
 });
 
-  test('s4 hana sap ui 5',async () => {
+  test('SAPui5',async () => {
     // const browser = await chromium.launch({ headless: false });
     // const context = await browser.newContext();
     await selectors.register('ui5-css', css);
