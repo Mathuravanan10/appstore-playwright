@@ -1,14 +1,14 @@
 export const managepurchaseorder = [
     {
-        orderName: '$Manage_po',
-        currency: '$currency',
-        supplier: '$supplierId',
-        groupinput: '$pur_Group',
-        Qragainzation: '$pur_org',
-        company: '$company_code',
-        material: '$material_No',
-        orderQuantity: '$orderQuantity',
-        netOrder:'$netOrder',
+        orderName: '$Manage_PO',
+        currency: '$Currency',
+        supplier: '$Supplier_Id',
+        groupinput: '$Purchasing_Group',
+        Qragainzation: '$Purchasing_Organization',
+        company: '$Company_Code',
+        material: '$Material_No',
+        orderQuantity: '$Order_Quantity',
+        netOrder:'$Net_Order',
     }
 ];
 
