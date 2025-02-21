@@ -91,7 +91,7 @@ test.describe(() => {
       const orderData = await page.locator('ui5-xpath=//sap.m.Title[@id="ui.ssuite.s2p.mm.pur.po.manage.st.s1::sap.suite.ui.generic.template.ObjectPage.view.Details::C_PurchaseOrderTP--template::ObjectPage::ObjectPageDynamicHeaderTitle"]').textContent();
       await page.waitForTimeout(2000);
       await page.screenshot({ path: 'pages/sap/sapUi5Img/orderNumber.png', fullPage: true });
-      console.log(`**gbStart**copilot_Manage_PO_id**splitKeyValue**Manage Purchase Order created ${orderData} Successful**gbEnd**`);
+      console.log(`**gbStart**Manage_PO_id**splitKeyValue**Manage Purchase Order created ${orderData} Successful**gbEnd**`);
       console.log(orderData,'Manage Purchase Order is created');
       await page.waitForTimeout(3000);
     }
