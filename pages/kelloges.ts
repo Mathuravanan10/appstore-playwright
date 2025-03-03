@@ -1561,4 +1561,27 @@ test('sales_order', async ({ }) => {
     // const ordernumber = await ordernum.locator(`ui5-xpath=//sap.m.Title`).textContent();
     // console.log(ordernumber, 'create sales order is Done');
     // await page.waitForTimeout(2000);
+
+    await page.goto('https://basiscloudsolutionspvtltd--dineshdev.sandbox.my.salesforce.com/');
+  await page.getByLabel('Username').fill('vijayakumarp@basiscloudsolutions.com.dineshdev');
+  await page.getByLabel('Password').click();
+  await page.getByLabel('Password').fill('Dinesh@123');
+  await page.getByRole('button', { name: 'Log In to Sandbox' }).click();
+  await page.getByRole('link', { name: 'Leads' }).click();
+  await page.getByRole('link', { name: 'mathu ravanan' }).click();
+  await page.getByRole('tab', { name: 'Details' }).click();
+  await page.getByRole('button', { name: 'Edit Lead Status' }).click();
+  await page.getByRole('combobox', { name: 'Lead Status' }).click();
+  await page.getByRole('option', { name: 'Qualified', exact: true }).locator('span').nth(1).click();
+  await page.getByRole('button', { name: 'Cancel' }).click();
+  await page.getByRole('link', { name: 'Opportunities' }).click();
+  await page.getByText('Ravi Kumar Caustic Soda Flakes Edit Opportunity Name: Item Ravi Kumar Caustic').click();
+
+  await page.getByRole('option', { name: 'Call Attempted (No Answer)' }).locator('span').nth(1).click();
+  await page.getByRole('combobox', { name: 'Lead Status' }).click();
+  await page.getByRole('option', { name: 'Call Rejected' }).locator('span').nth(1).click();
+  await page.getByRole('combobox', { name: 'Lead Status' }).click();
+  await page.getByRole('option', { name: 'Call Disconnected' }).locator('span').nth(1).click();
+  await page.getByRole('combobox', { name: 'Lead Status' }).click();
+  await page.getByRole('option', { name: 'Follow-Up Scheduled' }).locator('span').nth(1).click();
 }
