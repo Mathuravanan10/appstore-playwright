@@ -24,4 +24,4 @@ export const extensionLead = [
     }
 ];
 
-export const checkLead = '$chooseLead';
+export const checkLead = '$existinglead';
