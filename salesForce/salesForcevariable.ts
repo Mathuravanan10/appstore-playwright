@@ -1,6 +1,6 @@
-export const userName = 'vijayakumarp@basiscloudsolutions.com.dineshdev';
+export const userName = '$userName';
 
-export const Password = 'Dinesh@123';
+export const Password = '$password';
 
 export const LeadDetails = [
     {
@@ -18,10 +18,10 @@ export const LeadDetails = [
 
 export const extensionLead = [
     {
-        firstName: 'mathu',
-        lastName: 'ravanan',
-        email: 'mathu@gmail.com',
+        firstName: '$firstname',
+        lastName: '$lastname',
+        email: '$newEmail',
     }
 ];
 
-export const checkLead = 'existinglead';
+export const checkLead = '$chooseLead';
