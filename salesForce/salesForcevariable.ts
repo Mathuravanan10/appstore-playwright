@@ -1,6 +1,6 @@
-export const userName = '$userName';
+export const userName = 'vijayakumarp@basiscloudsolutions.com.dineshdev';
 
-export const Password = '$password';
+export const Password = 'Dinesh@123';
 
 export const LeadDetails = [
     {
@@ -15,3 +15,13 @@ export const LeadDetails = [
         states: '$states',
     }
 ];
+
+export const extensionLead = [
+    {
+        firstName: 'mathu',
+        lastName: 'ravanan',
+        email: 'mathu@gmail.com',
+    }
+];
+
+export const checkLead = 'existinglead';

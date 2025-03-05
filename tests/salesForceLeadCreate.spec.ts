@@ -1,6 +1,6 @@
 import { test, Page } from '@playwright/test';
 import { salesForceTestPage } from '../salesForce/salesForceTestpage';
-import { LeadDetails, Password, userName } from '../salesForce/salesForcevariable';
+import { checkLead, extensionLead, LeadDetails, Password, userName } from '../salesForce/salesForcevariable';
 
 test.describe(() => {
   test.setTimeout(800000);
@@ -16,7 +16,11 @@ test.describe(() => {
   });
 
   test('salesForce Creation',async () => {
-    await salesForce.salesForceLeadCreate(LeadDetails);
-    await salesForce.salesForceopportunities(LeadDetails);
+    if(checkLead === 'existinglead'){
+      await salesForce.salesForceExtensionLead(extensionLead);
+    }else{
+      await salesForce.salesForceLeadCreate(LeadDetails);
+      await salesForce.salesForceopportunities(LeadDetails);    
+    }
   });
 }); 
