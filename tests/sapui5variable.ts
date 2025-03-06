@@ -15,3 +15,16 @@ export const managepurchaseorder = [
 export const userName = '$Username';
 
 export const userPassword = '$password';
+
+export const sapUserCreation = [
+    {
+       firstName: '$FirstName',
+       LastName: '$Lastname',
+       email: '$Email',
+       Language: '$Language'
+    }
+];
+
+export const email_id = '$Email_Id';
+
+export const password = '$Password';

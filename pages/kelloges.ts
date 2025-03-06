@@ -10,72 +10,72 @@ export class kelloges {
 
 async kollgesLogin() {
   await this.page.waitForLoadState('domcontentloaded');
-  //   const links = ['https://www.kelloggs.com/me/en/home.html'];
-  //   const classNames = [
-  //     'class-one', 'class-two', 'class-three', 
-  //     'class-four', 'class-five', 'class-six'
-  //   ];
+    const links = ['https://www.kelloggs.com/me/en/home.html'];
+    const classNames = [
+      'class-one', 'class-two', 'class-three', 
+      'class-four', 'class-five', 'class-six'
+    ];
    
-  //   for (const link of links) {
-  //     console.log(`Navigating to: ${link}`);
-  //     await this.page.goto(link, { timeout: 30000, waitUntil: 'domcontentloaded' });
+    for (const link of links) {
+      console.log(`Navigating to: ${link}`);
+      await this.page.goto(link, { timeout: 30000, waitUntil: 'domcontentloaded' });
    
-  //     // Handle busy indicator if present
-  //     try {
-  //       const busyIndicator = this.page.getByText("Please wait");
-  //       await busyIndicator.waitFor({ state: 'hidden', timeout: 60000 });
-  //     } catch (error) {
-  //       console.log("No busy indicator found, continuing...");
-  //     }
+      // Handle busy indicator if present
+      try {
+        const busyIndicator = this.page.getByText("Please wait");
+        await busyIndicator.waitFor({ state: 'hidden', timeout: 60000 });
+      } catch (error) {
+        console.log("No busy indicator found, continuing...");
+      }
    
-  //     // Add class names dynamically
-  //     await this.page.evaluate(({ selector, classes }) => {
-  //       const elements = document.querySelectorAll(selector);
-  //       elements.forEach((element, index) => {
-  //         if (index < classes.length) {
-  //           element.classList.add(classes[index]);
-  //         }
-  //       });
-  //     }, { selector: 'span.cta-text', classes: classNames });
+      // Add class names dynamically
+      await this.page.evaluate(({ selector, classes }) => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach((element, index) => {
+          if (index < classes.length) {
+            element.classList.add(classes[index]);
+          }
+        });
+      }, { selector: 'span.cta-text', classes: classNames });
    
-  //     // Process elements one by one
-  //     for (const className of classNames) {
-  //       console.log(`Processing class: ${className}`);
+      // Process elements one by one
+      for (const className of classNames) {
+        console.log(`Processing class: ${className}`);
    
-  //       // Click the current element with the specific class name
-  //       const clickableElement = this.page.locator(`span.cta-text.${className}`);
-  //       console.log(clickableElement, 'iii')
-  //       // if (await clickableElement.isVisible()) {
-  //       //   await clickableElement.click();
-  //       //   await this.page.waitForLoadState('domcontentloaded');
-  //       //   console.log(`Clicked and navigated for class: ${className}`);
-  //       // } else {
-  //       //   console.log(`Element with class ${className} not found or not visible.`);
-  //       //   continue;
-  //       // }
+        // Click the current element with the specific class name
+        const clickableElement = this.page.locator(`span.cta-text.${className}`);
+        console.log(clickableElement, 'iii')
+        // if (await clickableElement.isVisible()) {
+        //   await clickableElement.click();
+        //   await this.page.waitForLoadState('domcontentloaded');
+        //   console.log(`Clicked and navigated for class: ${className}`);
+        // } else {
+        //   console.log(`Element with class ${className} not found or not visible.`);
+        //   continue;
+        // }
    
-  //       // Fetch and print the updated classes or page elements after navigation
-  //       const updatedClassNames = await this.page.evaluate(() => {
-  //         return Array.from(document.querySelectorAll('span.cta-text'))
-  //           .map((el) => el.className);
-  //       });
+        // Fetch and print the updated classes or page elements after navigation
+        const updatedClassNames = await this.page.evaluate(() => {
+          return Array.from(document.querySelectorAll('span.cta-text'))
+            .map((el) => el.className);
+        });
    
-  //       console.log(`Updated class names after navigation:`, updatedClassNames);
+        console.log(`Updated class names after navigation:`, updatedClassNames);
    
-  //       // Optionally, navigate back to the original page to continue processing
-  //       await this.page.goBack({ waitUntil: 'domcontentloaded' });
-  //     }
-  //   }
-  // const browser = await chromium.launch();
-  // const page = await browser.newPage();
+        // Optionally, navigate back to the original page to continue processing
+        await this.page.goBack({ waitUntil: 'domcontentloaded' });
+      }
+    }
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
  
-  // Navigate to the target page
-  // await this.page.goto('https://www.townhousecrackers.ca/fr_CA/home.html');
+  Navigate to the target page
+  await this.page.goto('https://www.townhousecrackers.ca/fr_CA/home.html');
  
-  // // Extract all href values from <a> tags
-  // const hrefs = await this.page.$$eval('a', links =>
-  //   links.map(link => link.href)
-  // );
+  // Extract all href values from <a> tags
+  const hrefs = await this.page.$$eval('a', links =>
+    links.map(link => link.href)
+  );
  
   // console.log('Extracted hrefs:', hrefs);
  
@@ -1562,26 +1562,41 @@ test('sales_order', async ({ }) => {
     // console.log(ordernumber, 'create sales order is Done');
     // await page.waitForTimeout(2000);
 
-    await page.goto('https://basiscloudsolutionspvtltd--dineshdev.sandbox.my.salesforce.com/');
-  await page.getByLabel('Username').fill('vijayakumarp@basiscloudsolutions.com.dineshdev');
-  await page.getByLabel('Password').click();
-  await page.getByLabel('Password').fill('Dinesh@123');
-  await page.getByRole('button', { name: 'Log In to Sandbox' }).click();
-  await page.getByRole('link', { name: 'Leads' }).click();
-  await page.getByRole('link', { name: 'mathu ravanan' }).click();
-  await page.getByRole('tab', { name: 'Details' }).click();
-  await page.getByRole('button', { name: 'Edit Lead Status' }).click();
-  await page.getByRole('combobox', { name: 'Lead Status' }).click();
-  await page.getByRole('option', { name: 'Qualified', exact: true }).locator('span').nth(1).click();
-  await page.getByRole('button', { name: 'Cancel' }).click();
-  await page.getByRole('link', { name: 'Opportunities' }).click();
-  await page.getByText('Ravi Kumar Caustic Soda Flakes Edit Opportunity Name: Item Ravi Kumar Caustic').click();
-
-  await page.getByRole('option', { name: 'Call Attempted (No Answer)' }).locator('span').nth(1).click();
-  await page.getByRole('combobox', { name: 'Lead Status' }).click();
-  await page.getByRole('option', { name: 'Call Rejected' }).locator('span').nth(1).click();
-  await page.getByRole('combobox', { name: 'Lead Status' }).click();
-  await page.getByRole('option', { name: 'Call Disconnected' }).locator('span').nth(1).click();
-  await page.getByRole('combobox', { name: 'Lead Status' }).click();
-  await page.getByRole('option', { name: 'Follow-Up Scheduled' }).locator('span').nth(1).click();
+    await page.goto('https://basiscloudsolutionspvtltd--vishnudev.sandbox.my.salesforce.com/');
+    await page.getByLabel('Username').fill('vijayakumarp@basiscloudsolutions.com.vishnudev');
+    await page.getByLabel('Password').click();
+    await page.getByLabel('Password').fill('Vishnudev@21 ');
+    await page.getByRole('button', { name: 'Log In to Sandbox' }).click();
+    await page.goto('https://basiscloudsolutionspvtltd--vishnudev.sandbox.lightning.force.com/lightning/page/home');
+    await page.getByRole('button', { name: 'App Launcher' }).click();
+    await page.getByRole('option', { name: 'Sales', exact: true }).click();
+    await page.getByRole('link', { name: 'Leads' }).click();
+    await page.getByRole('button', { name: 'New' }).click();
+    await page.getByRole('combobox', { name: 'Salutation' }).click();
+    await page.getByRole('option', { name: 'Mr.' }).locator('span').nth(1).click();
+    await page.getByPlaceholder('First Name').click();
+    await page.getByPlaceholder('First Name').fill('mathu');
+    await page.getByPlaceholder('Last Name').click();
+    await page.getByPlaceholder('Last Name').fill('nbvc');
+    await page.getByLabel('*Company').click();
+    await page.getByLabel('*Company').fill('bcs');
+    await page.getByLabel('*Phone').click();
+    await page.getByLabel('*Phone').fill('2345678909');
+    await page.getByLabel('*Email').click();
+    await page.getByLabel('*Email').fill('mathu@gmail.com');
+    await page.getByRole('combobox', { name: 'Product' }).click();
+    await page.getByRole('option', { name: 'Alum Crystals' }).locator('span').nth(1).click();
+    await page.getByRole('combobox', { name: 'States' }).click();
+    await page.getByRole('option', { name: 'TamilNadu' }).locator('span').nth(1).click();
+    await page.getByRole('button', { name: 'Cancel and close' }).click();
+    await page.getByRole('link', { name: 'Opportunities' }).click();
+    await page.getByRole('button', { name: 'Select a List View:' }).click();
+    await page.getByRole('option', { name: 'My Opportunities' }).click();
+    await page.getByText('VanessaWood Edit Opportunity').click();
+    await page.getByRole('link', { name: 'Leads' }).click();
+    await page.getByRole('link', { name: 'Preethi', exact: true }).click();
+    await page.getByRole('link', { name: 'Leads' }).click();
+    await page.getByRole('link', { name: 'Caroline Howard' }).click();
+    await page.getByTitle('More New Event Actions').nth(1).click();
+    const page1Promise = page.waitForEvent('popup');
 }
