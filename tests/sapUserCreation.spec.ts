@@ -19,6 +19,7 @@ test.describe(() => {
     test('Sap_User_Creation',async () => {
         for(const click of sapUserCreation){
             await page.goto('https://me.sap.com/userscontacts/usermanagement');
+            await page.waitForTimeout(10000);
             const iframe= page.frameLocator('iframe[id="shell-component---application344094044--frame"]');
             await iframe.getByRole('button', { name: "Request User" }).click();
             await page.waitForTimeout(6000);

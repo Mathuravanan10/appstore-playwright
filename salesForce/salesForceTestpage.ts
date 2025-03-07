@@ -133,4 +133,38 @@ export class salesForceTestPage {
       console.log(`**gbStart**Opportunities_Check**splitKeyValue**${click.firstName} ${click.lastName} opportunities create successful**gbEnd**`);
     }
   }
+
+  async salesForceCreateNewLead (extensionLead: any) {
+    // for(const click of extensionLead){
+      await this.page.getByRole('button', { name: 'App Launcher' }).click();
+      await this.page.getByRole('option', { name: 'Sales', exact: true }).click();
+      await this.page.getByRole('link', { name: 'Leads' }).click();
+      await this.page.getByRole('button', { name: 'New' }).click();
+      await this.page.getByRole('combobox', { name: 'Salutation' }).click();
+      await this.page.getByRole('option', { name: 'Mr.' }).locator('span').nth(1).click();
+      await this.page.getByPlaceholder('First Name').click();
+      await this.page.getByPlaceholder('First Name').fill('mathu');
+      await this.page.getByPlaceholder('Last Name').click();
+      await this.page.getByPlaceholder('Last Name').fill('nbvc');
+      await this.page.getByLabel('*Company').click();
+      await this.page.getByLabel('*Company').fill('bcs');
+      await this.page.getByLabel('*Phone').click();
+      await this.page.getByLabel('*Phone').fill('2345678909');
+      await this.page.getByLabel('*Email').click();
+      await this.page.getByLabel('*Email').fill('mathu@gmail.com');
+      await this.page.getByRole('combobox', { name: 'Product' }).click();
+      await this.page.getByRole('option', { name: 'Alum Crystals' }).locator('span').nth(1).click();
+      await this.page.getByRole('combobox', { name: 'States' }).click();
+      await this.page.getByRole('option', { name: 'TamilNadu' }).locator('span').nth(1).click();
+      await this.page.getByRole('button', { name: 'Cancel and close' }).click();
+      await this.page.getByRole('link', { name: 'Opportunities' }).click();
+      await this.page.getByRole('button', { name: 'Select a List View:' }).click();
+      await this.page.getByRole('option', { name: 'My Opportunities' }).click();
+      await this.page.getByText('VanessaWood Edit Opportunity').click();
+      await this.page.getByRole('link', { name: 'Leads' }).click();
+      await this.page.getByRole('link', { name: 'Preethi', exact: true }).click();
+      await this.page.getByRole('link', { name: 'Leads' }).click();
+      await this.page.getByRole('link', { name: 'Caroline Howard' }).click();
+    // }
+  }
 }
