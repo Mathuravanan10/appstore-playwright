@@ -24,6 +24,7 @@ test.describe(() => {
             await iframe.getByRole('button', { name: "Request User" }).click();
             await page.waitForTimeout(6000);
             await iframe.locator('#__input0-vhi').click();
+            await page.waitForTimeout(2000);
             await iframe.locator('#__list12-listUl').click();
             await iframe.getByPlaceholder("Enter First Name ...").fill(click.firstName);
             await iframe.getByPlaceholder("Enter Last Name ...").fill(click.LastName);
