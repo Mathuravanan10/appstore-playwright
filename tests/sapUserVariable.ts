@@ -7,16 +7,24 @@ export const sapUserCreation = [
     }
 ];
 
-export const email_id = '$Email_Id';
+// export const email_id = '$Email_Id';
 
-export const password = '$Password';
+// export const password = '$Password';
+
+export const email_id = 'S0026851640';
+
+export const password = 'ldRoxvmZ874@';
 
 
 export const authorization = ['$Cases', '$Partners'];
 
-export const Development_User_Id = '$Development_User_Id';
+// export const Development_User_Id = '$Development_User_Id';
 
-export const Dpt_Install_Number = '$Dpt_Install_Number';
+// export const Dpt_Install_Number = '$Dpt_Install_Number';
+
+export const Development_User_Id = 'S0026872448';
+
+export const Dpt_Install_Number = '0090963535';
 
 export const ObjectKeys = [
     {

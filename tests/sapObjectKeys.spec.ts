@@ -52,9 +52,11 @@ test.describe(() => {
             await iframe.locator('#__xmlview4--table-sa-CbBg').click();
             await page.waitForTimeout(8000);
             await iframe.getByRole('button', { name: "Register" }).click();
-            const register_Id = iframe.locator('#__text85').textContent();
-            console.log(`**gbStart**Sap_Object_Keys**splitKeyValue**${register_Id}**gbEnd**`);
-            console.log(register_Id, 'lll');
+            await page.waitForTimeout(4000);
+            await page.screenshot({ path: 'pages/sap/sapUi5Img/Object_Keys.png', fullPage: true });
+            // const register_Id = iframe.locator('#__text85').textContent();
+            // console.log(`**gbStart**Sap_Object_Keys**splitKeyValue**${register_Id}**gbEnd**`);
+            // console.log(register_Id, 'lll');
             await page.waitForTimeout(8000);
         }
     });
