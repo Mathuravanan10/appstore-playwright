@@ -14,9 +14,9 @@ export const password = '$Password';
 
 export const authorization = ['$Cases', '$Partners'];
 
-export const Development_User_Id = 'S0026851640';
+export const Development_User_Id = '$Development_User_Id';
 
-export const Dpt_Install_Number = '0091005719';
+export const Dpt_Install_Number = '$Dpt_Install_Number';
 
 export const ObjectKeys = [
     {
