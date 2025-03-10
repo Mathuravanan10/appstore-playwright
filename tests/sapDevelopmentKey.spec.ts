@@ -37,7 +37,7 @@ test.describe(() => {
         await iframe.locator('#__xmlview3--table-sa-CbBg').click();
         await page.waitForTimeout(8000);
         await iframe.getByRole('button', { name: "Register" }).click();
-        const register_Id = iframe.locator('#__text45').textContent();
+        const register_Id = iframe.locator('#__data36').textContent();
         console.log(`**gbStart**Sap_Developemnt_Keys**splitKeyValue**${register_Id}**gbEnd**`);
         console.log(register_Id, 'mmm');
         await page.waitForTimeout(4000);
