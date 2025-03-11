@@ -31,8 +31,8 @@ test.describe(() => {
             await page.waitForTimeout(2000);
             await iframe.getByRole('button', { name: "Register" }).click();
             await page.waitForTimeout(2000);
-            await iframe.locator('#__xmlview5--object-inner').click();
-            await iframe.locator('#__xmlview5--object-inner').fill(click.object_Id);
+            await iframe.locator('#__xmlview4--object-inner').click();
+            await iframe.locator('#__xmlview4--object-inner').fill(click.object_Id);
             await page.waitForTimeout(2000);
             await iframe.locator('#__xmlview4--release-inner').click();
             await iframe.locator('#__xmlview4--release-inner').fill(click.Basis_Release);
