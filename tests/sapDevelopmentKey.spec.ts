@@ -39,9 +39,9 @@ test.describe(() => {
         await iframe.getByRole('button', { name: "Register" }).click();
         await page.waitForTimeout(4000);
         await page.screenshot({ path: 'pages/sap/sapUi5Img/Development_Install.png', fullPage: true });
-        // const register_Id = iframe.locator('#__text45').textContent();
-        // console.log(`**gbStart**Sap_Developemnt_Keys**splitKeyValue**${register_Id}**gbEnd**`);
-        // console.log(register_Id, 'mmm');
+        const element = iframe.locator('//div[contains(@id, "__text44")]');
+        console.log(await element.textContent());
+        console.log(`**gbStart**Sap_Developemnt_Keys**splitKeyValue**${element.textContent()}**gbEnd**`);
         await page.waitForTimeout(4000);
     });
 }); 

@@ -11,8 +11,7 @@ export const email_id = '$Email_Id';
 
 export const password = '$Password';
 
-
-export const authorization = ['$Cases', '$Partners'];
+export const authorization = ['$Cases', '$Partners', '$SSCR', '$License', '$User', '$All'];
 
 export const Development_User_Id = '$Development_User_Id';
 
