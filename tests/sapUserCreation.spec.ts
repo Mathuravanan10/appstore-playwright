@@ -37,23 +37,26 @@ test.describe(() => {
             await expect(iframe.getByText('User was requested')).toBeVisible();
             console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} SAP User Creation Successful**gbEnd**`);
             await iframe.getByRole('button', { name: "OK" }).click();
+            await page.waitForTimeout(10000);
             await iframe.locator('#searchField-I').click();
             await iframe.locator('#searchField-I').fill(click.email);
-            await page.waitForTimeout(4000);
+            await page.waitForTimeout(6000);
             const icon = iframe.locator('#__item25-__clone0-imgNav');
             if(await icon.isVisible()){
                 await icon.click();
             }
             await page.waitForTimeout(6000);
-            await iframe.locator('#__xmlview2--idUAdetailPageLayout-anchBar-__xmlview2--idUAUserDetailAuthorizations-anchor').click();
-            await page.waitForTimeout(2000);
             await iframe.locator('#__button75').click();
+            await page.waitForTimeout(3000);
             for(const text of authorization){
-                if (text.startsWith('$')) {
-                    break;
+                if (text === '') {
+                    console.log('Authorization is Not There!');
+                }else{
+                    await page.waitForTimeout(6000);
+                    const checkbox = iframe.locator(`//li[.//bdi[text()='${text}']]//div[contains(@class, 'sapMCb')]`);
+                    await checkbox.first().click();
+                    await page.waitForTimeout(2000);
                 }
-                const checkbox = iframe.locator(`//li[.//bdi[text()='${text}']]//div[contains(@class, 'sapMCb')]`);
-                await checkbox.first().click();
             }
             await iframe.locator('#__button76').click();
             console.log(`**gbStart**Sap_User_Creation**splitKeyValue**${click.firstName} User is Successful Created**gbEnd**`);
