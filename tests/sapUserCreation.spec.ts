@@ -29,6 +29,32 @@ test.describe(() => {
             await iframe.getByPlaceholder("Enter First Name ...").fill(click.firstName);
             await iframe.getByPlaceholder("Enter Last Name ...").fill(click.LastName);
             await iframe.getByPlaceholder('Enter Email Username').fill(click.email);
+            await page.waitForTimeout(4000);
+            await iframe.locator('.sapMSltArrow').nth(0).click({ force: true });
+            const dropdown = iframe.locator('.sapMSelectList');
+            const option = dropdown.locator('li', { hasText: 'businesscoresolutions.com' }).nth(0);
+            await option.click(); 
+
+            const today = new Date();
+            const maxDate = new Date();
+            maxDate.setFullYear(today.getFullYear() + 2);
+            const formattedDate = new Intl.DateTimeFormat('de-DE').format(maxDate)
+            const parseDate = (dateStr: any) => {
+                const [day, month, year] = dateStr.split('.').map(Number);
+                return new Date(year, month - 1, day);
+            };
+            
+            const userDate = parseDate(click.Date);
+            const maxDateObj = parseDate(formattedDate);
+            if(userDate < maxDateObj){
+              await iframe.locator('#__picker0-inner').click();
+              await iframe.locator('#__picker0-inner').fill(click.Date);
+              await page.waitForTimeout(4000);
+            }else{
+                await iframe.locator('#__picker0-inner').click();
+                await iframe.locator('#__picker0-inner').fill(formattedDate);
+                await page.waitForTimeout(4000);
+            }  
             await page.waitForTimeout(6000);
             await iframe.locator('#__select0-arrow').click();
             await iframe.locator(`li:text("${click.Language}")`).click(); 
@@ -40,13 +66,17 @@ test.describe(() => {
             await page.waitForTimeout(10000);
             await iframe.locator('#searchField-I').click();
             await iframe.locator('#searchField-I').fill(click.email);
-            await page.waitForTimeout(6000);
+            await page.waitForTimeout(15000);
             const icon = iframe.locator('#__item25-__clone0-imgNav');
             if(await icon.isVisible()){
+                await page.waitForTimeout(2000);
                 await icon.click();
+            }else{
+                await page.waitForTimeout(2000);
+                await iframe.locator('#__item25-__clone0_cell1').click();
             }
             await page.waitForTimeout(6000);
-            await iframe.locator('#__button75').click();
+            await iframe.locator('#__button75-inner').click();
             await page.waitForTimeout(3000);
             for(const text of authorization){
                 if (text === '') {
