@@ -32,7 +32,7 @@ test.describe(() => {
             await page.waitForTimeout(4000);
             await iframe.locator('.sapMSltArrow').nth(0).click({ force: true });
             const dropdown = iframe.locator('.sapMSelectList');
-            const option = dropdown.locator('li', { hasText: 'businesscoresolutions.com' }).nth(0);
+            const option = dropdown.locator('li', { hasText: `${click.emailpathu}` }).nth(0);
             await option.click(); 
 
             const today = new Date();

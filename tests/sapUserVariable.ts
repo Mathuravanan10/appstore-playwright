@@ -2,10 +2,10 @@ export const sapUserCreation = [
     {
        firstName: '$FirstName',
        LastName: '$Lastname',
-       email: '$Email',
+       email: '$Email(Name Only)',
        Language: '$Language',
        Date:'$Date',
-
+       emailpathu: '$Emailpathu'
     }
 ];
 
