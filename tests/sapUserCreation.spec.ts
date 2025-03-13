@@ -9,7 +9,7 @@ test.describe(() => {
         await page.goto('https://me.sap.com/home');
         await page.getByPlaceholder('E-Mail, ID, or Login Name').fill(email_id);
         await page.getByRole('button', { name: 'Continue' }).click();
-        await page.waitForTimeout(8000);
+        await page.waitForTimeout(10000);
         await page.getByLabel('Password').click();
         await page.getByLabel('Password').fill(password);
         await page.getByRole('button', { name: 'Sign in' }).click();
@@ -67,19 +67,12 @@ test.describe(() => {
             await iframe.locator('#searchField-I').click();
             await iframe.locator('#searchField-I').fill(click.email);
             await page.waitForTimeout(15000);
-            const icon = iframe.locator('#__item25-__clone0-imgNav');
-            if(await icon.isVisible()){
-                await page.waitForTimeout(2000);
-                await icon.click();
-            }else{
-                await page.waitForTimeout(2000);
-                await iframe.locator('#__item25-__clone0_cell1').click();
-            }
+            await iframe.locator('.sapUiIcon.sapMLIBImgNav').click();
             await page.waitForTimeout(6000);
-            await iframe.locator('#__button75-inner').click();
+            await iframe.getByRole('button', { name: 'Edit Authorizations' }).click();
             await page.waitForTimeout(3000);
             for(const text of authorization){
-                if (text === '') {
+                if (text === ''|| text.startsWith('$')) {
                     console.log('Authorization is Not There!');
                 }else{
                     await page.waitForTimeout(6000);
@@ -88,7 +81,7 @@ test.describe(() => {
                     await page.waitForTimeout(2000);
                 }
             }
-            await iframe.locator('#__button76').click();
+            await iframe.getByRole('button', { name: 'Save Authorizations' }).click();
             console.log(`**gbStart**Sap_User_Creation**splitKeyValue**${click.firstName} User is Successful Created**gbEnd**`);
             await page.waitForTimeout(6000);
             
