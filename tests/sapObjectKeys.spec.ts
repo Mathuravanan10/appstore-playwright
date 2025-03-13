@@ -37,9 +37,11 @@ test.describe(() => {
             await page.waitForTimeout(2000);
             await iframe.locator('#__xmlview4--release-inner').click();
             await iframe.locator('#__xmlview4--release-inner').fill(click.Basis_Release);
+            await iframe.locator('#__xmlview4--release-inner').press('Enter');
             await page.waitForTimeout(2000);
             await iframe.locator('#__xmlview4--id-inner').click(),
             await iframe.locator('#__xmlview4--id-inner').fill(click.Program_ID);
+            await iframe.locator('#__xmlview4--id-inner').press('Enter'),
             await page.waitForTimeout(2000);
             await iframe.locator('#__xmlview4--type-inner').click();
             await iframe.locator('#__xmlview4--type-inner').fill(click.Type);
