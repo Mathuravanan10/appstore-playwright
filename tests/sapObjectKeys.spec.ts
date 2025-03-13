@@ -56,7 +56,7 @@ test.describe(() => {
             await page.waitForTimeout(4000);
             await page.screenshot({ path: 'pages/sap/sapUi5Img/Object_Keys.png', fullPage: true });
             const element = iframe.locator('//div[contains(@id, "__text85")]');
-            console.log(`**gbStart**Sap_Developemnt_Keys**splitKeyValue**${await element.textContent()}**gbEnd**`);
+            console.log(`**gbStart**Sap_Object_Keys**splitKeyValue**${await element.textContent()}**gbEnd**`);
             console.log(await element.textContent());
             await page.waitForTimeout(8000);
         }
