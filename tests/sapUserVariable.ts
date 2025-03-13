@@ -2,7 +2,7 @@ export const sapUserCreation = [
     {
        firstName: '$FirstName',
        LastName: '$Lastname',
-       email: '$Email(Name Only)',
+       email: '$Email_Name_Only',
        Language: '$Language',
        Date:'$Date',
        emailpathu: '$Emailpathu'
@@ -13,7 +13,7 @@ export const email_id = '$Email_Id';
 
 export const password = '$Password';
 
-export const authorization = ['$All', '$Report', '$Close', '$Send', '$Register Object and Developer Keys', '$Request License Key', '$Request License Key (Partner)', '$Edit Authorizations', '$Edit User Data'];
+export const authorization = ['$All', '$Report', '$Close', '$Send', '$Register_Object_and_Developer_Keys', '$Request_License_Key', '$Request_License_Key_Partner', '$Edit_Authorizations', '$Edit_User_Data'];
 
 export const Development_User_Id = '$Development_User_Id';
 
