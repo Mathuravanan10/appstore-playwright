@@ -18,11 +18,12 @@ test.describe(() => {
 
     test('Sap_Developer_Keys',async () => {
         await page.goto('https://me.sap.com/home');
+        await page.waitForTimeout(6000);
+        await page.getByText('Services & Support').click();
+        // await page.locator('[id="__tab4-__group1-2"]').click();
         await page.waitForTimeout(4000);
-        await page.locator('[id="__tab4-__group1-2"]').click();
-        await page.waitForTimeout(2000);
         await page.getByRole('heading', { name: 'Request License Keys' }).click();
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(4000);
         await page.getByText('Developer & Object Keys (SSCR)').click();
         await page.waitForTimeout(4000);
         const iframe= page.frameLocator('iframe[id="shell-component---application100144251--frame"]');
