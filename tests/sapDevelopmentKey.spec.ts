@@ -1,4 +1,4 @@
-import { test, Page } from '@playwright/test';
+import { test, Page, expect } from '@playwright/test';
 import { Development_User_Id, Dpt_Install_Number, email_id, password } from './sapUserVariable';
 
 test.describe(() => {
@@ -35,15 +35,22 @@ test.describe(() => {
         await iframe.locator('#__field2-I').click();
         await iframe.locator('#__field2-I').fill(Dpt_Install_Number);
         await page.waitForTimeout(2000);
-        await iframe.locator('#__xmlview3--table-sa-CbBg').click();
-        await page.waitForTimeout(8000);
-        await iframe.getByRole('button', { name: "Register" }).click();
-        await page.waitForTimeout(4000);
-        await page.screenshot({ path: 'pages/sap/sapUi5Img/Development_Install.png', fullPage: true });
-        const element = iframe.locator('//div[contains(@id, "__text44")]');
-        console.log(`**gbStart**Sap_Developemnt_Keys**splitKeyValue**${await element.textContent()}**gbEnd**`);
-        console.log(await element.textContent());
-        await page.waitForTimeout(4000);
+        const data = iframe.getByText('No data');
+        if(await data.isVisible()){
+            console.log('Installation Id is not visible');
+            console.log(`**gbStart**Sap_Developemnt_Keys**splitKeyValue**Installation Id is not visible**gbEnd**`);
+            await page.waitForTimeout(4000);
+        }else{
+            await iframe.locator('#__xmlview3--table-sa-CbBg').click();
+            await page.waitForTimeout(8000);
+            await iframe.getByRole('button', { name: "Register" }).click();
+            await page.waitForTimeout(4000);
+            await page.screenshot({ path: 'pages/sap/sapUi5Img/Development_Install.png', fullPage: true });
+            const element = iframe.locator('//div[contains(@id, "__text44")]');
+            console.log(`**gbStart**Sap_Developemnt_Keys**splitKeyValue**${await element.textContent()}**gbEnd**`);
+            console.log(await element.textContent());
+            await page.waitForTimeout(4000);
+        }
     });
 }); 
 

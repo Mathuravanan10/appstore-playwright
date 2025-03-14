@@ -1,5 +1,5 @@
 import { test, Page, selectors, expect } from '@playwright/test';
-import { authorization, email_id, password, sapUserCreation } from './sapUserVariable';
+import { email_id, password, sapUserCreation } from './sapUserVariable';
 
 test.describe(() => {
     test.setTimeout(800000);
@@ -64,27 +64,6 @@ test.describe(() => {
             console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} SAP User Creation Successful**gbEnd**`);
             await iframe.getByRole('button', { name: "OK" }).click();
             await page.waitForTimeout(10000);
-            await iframe.locator('#searchField-I').click();
-            await iframe.locator('#searchField-I').fill(click.email);
-            await page.waitForTimeout(15000);
-            await iframe.locator('.sapUiIcon.sapMLIBImgNav').click();
-            await page.waitForTimeout(6000);
-            await iframe.getByRole('button', { name: 'Edit Authorizations' }).click();
-            await page.waitForTimeout(3000);
-            for(const text of authorization){
-                if (text === ''|| text.startsWith('$')) {
-                    console.log('Authorization is Not There!');
-                }else{
-                    await page.waitForTimeout(6000);
-                    const checkbox = iframe.locator(`//li[.//bdi[text()='${text}']]//div[contains(@class, 'sapMCb')]`);
-                    await checkbox.first().click();
-                    await page.waitForTimeout(2000);
-                }
-            }
-            await iframe.getByRole('button', { name: 'Save Authorizations' }).click();
-            console.log(`**gbStart**Sap_User_Creation**splitKeyValue**${click.firstName} User is Successful Created**gbEnd**`);
-            await page.waitForTimeout(6000);
-            
         }
     });
 }); 

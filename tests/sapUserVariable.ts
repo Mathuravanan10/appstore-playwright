@@ -5,7 +5,7 @@ export const sapUserCreation = [
        email: '$Email_Name_Only',
        Language: '$Language',
        Date:'$Date',
-       emailpathu: '$Emailpathu'
+       emailpathu: '$Email_Format'
     }
 ];
 

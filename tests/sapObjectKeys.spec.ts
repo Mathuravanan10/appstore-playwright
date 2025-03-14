@@ -1,4 +1,4 @@
-import { test, Page, selectors, expect } from '@playwright/test';
+import { test, Page } from '@playwright/test';
 import { email_id, obj_Install_Number, ObjectKeys, password } from './sapUserVariable';
 
 test.describe(() => {
@@ -52,15 +52,22 @@ test.describe(() => {
             await iframe.locator('#__field4-I').click();
             await iframe.locator('#__field4-I').fill(obj_Install_Number);
             await page.waitForTimeout(2000);
-            await iframe.locator('#__xmlview4--table-sa-CbBg').click();
-            await page.waitForTimeout(8000);
-            await iframe.getByRole('button', { name: "Register" }).click();
-            await page.waitForTimeout(4000);
-            await page.screenshot({ path: 'pages/sap/sapUi5Img/Object_Keys.png', fullPage: true });
-            const element = iframe.locator('//div[contains(@id, "__text85")]');
-            console.log(`**gbStart**Sap_Object_Keys**splitKeyValue**${await element.textContent()}**gbEnd**`);
-            console.log(await element.textContent());
-            await page.waitForTimeout(8000);
+            const data = iframe.getByText('No data');
+            if(await data.isVisible()){
+                console.log('Installation Id is not visible');
+                console.log(`**gbStart**Sap_Object_Keys**splitKeyValue**Installation Id is not visible**gbEnd**`);
+                await page.waitForTimeout(4000);
+            }else{
+                await iframe.locator('#__xmlview4--table-sa-CbBg').click();
+                await page.waitForTimeout(8000);
+                await iframe.getByRole('button', { name: "Register" }).click();
+                await page.waitForTimeout(4000);
+                await page.screenshot({ path: 'pages/sap/sapUi5Img/Object_Keys.png', fullPage: true });
+                const element = iframe.locator('//div[contains(@id, "__text85")]');
+                console.log(`**gbStart**Sap_Object_Keys**splitKeyValue**${await element.textContent()}**gbEnd**`);
+                console.log(await element.textContent());
+                await page.waitForTimeout(8000);
+            }
         }
     });
 }); 
