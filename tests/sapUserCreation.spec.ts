@@ -61,7 +61,7 @@ test.describe(() => {
             await iframe.getByRole('button', { name: "Submit" }).click();
             await page.waitForTimeout(10000);
             await expect(iframe.getByText('User was requested')).toBeVisible();
-            console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} SAP User Creation Successful**gbEnd**`);
+            console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} SAP S-User Creation Successful**gbEnd**`);
             await iframe.getByRole('button', { name: "OK" }).click();
             await page.waitForTimeout(10000);
         }
