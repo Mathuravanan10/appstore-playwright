@@ -28,7 +28,8 @@ test.describe(() => {
             await page.waitForTimeout(6000);
             await iframe.getByRole('button', { name: 'Edit Authorizations' }).click();
             await page.waitForTimeout(3000);
-            for(const text of authorization){
+            const autho = JSON.parse(authorization);
+            for(const text of autho){
                 if (text === ''|| text.startsWith('$')) {
                     console.log('Authorization is Not There!');
                 }else{
