@@ -69,6 +69,8 @@ test.describe(() => {
                 }  
                 if (!isValidDateFormat(click.Date)) {
                     console.log(`Invalid date format: ${click.Date}. Please enter in DD.MM.YYYY format`);
+                    console.log(`**gbStart**sapusercreation**splitKeyValue**Invalid date format: ${click.Date}. Please enter in DD.MM.YYYY format**gbEnd**`);
+                    await page.waitForTimeout(2000);
                 }else{
                     await page.waitForTimeout(6000);
                     await iframe.locator('#__select0-arrow').click();

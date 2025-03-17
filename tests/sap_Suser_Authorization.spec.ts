@@ -28,9 +28,28 @@ test.describe(() => {
             await page.waitForTimeout(6000);
             await iframe.getByRole('button', { name: 'Edit Authorizations' }).click();
             await page.waitForTimeout(3000);
-            const autho = JSON.parse(authorization);
+            // const autho = JSON.parse(authorization);
+            let autho: string[] = [];
+
+            if (authorization.startsWith('[') && authorization.endsWith(']')) {
+                autho = JSON.parse(authorization);
+                if (!Array.isArray(autho)) {
+                    autho = [];
+                }
+            }
+
+            for (const text of autho) {
+                if (text === '' || text.startsWith('$')) {
+                    console.log('Authorization is Not There!');
+                } else {
+                    await page.waitForTimeout(6000);
+                    const checkbox = iframe.locator(`//li[.//bdi[text()='${text}']]//div[contains(@class, 'sapMCb')]`);
+                    await checkbox.first().click();
+                    await page.waitForTimeout(2000);
+                }
+            }
             for(const text of autho){
-                if (text === ''|| text.startsWith('$')) {
+                if (text === ''|| text.startsWith('$')) {  
                     console.log('Authorization is Not There!');
                 }else{
                     await page.waitForTimeout(6000);
