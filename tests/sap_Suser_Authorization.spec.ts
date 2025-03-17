@@ -4,8 +4,6 @@ import { authorization, email_id, password, sapUserCreation } from './sapUserVar
 test.describe(() => {
     test.setTimeout(800000);
     let page: Page;
-    let autho: string[] = [];
-
     test.beforeAll(async ({browser}) =>{
         page = await browser.newPage();
         await page.goto('https://me.sap.com/home');
@@ -30,74 +28,27 @@ test.describe(() => {
             await page.waitForTimeout(6000);
             await iframe.getByRole('button', { name: 'Edit Authorizations' }).click();
             await page.waitForTimeout(3000);
-            // const autho = JSON.parse(authorization);
-            
-            // for(const text of autho){
-            //     if (text === ''|| text.startsWith('$')) {
-            //         console.log('Authorization is Not There!');
-            //     }else{
-            //         await page.waitForTimeout(6000);
-            //         const checkbox = iframe.locator(`//li[.//bdi[text()='${text}']]//div[contains(@class, 'sapMCb')]`);
-            //         await checkbox.first().click();
-            //         await page.waitForTimeout(2000);
-            //     }
-            // }
+            let autho: any;
 
-// if (authorization.startsWith('[') && authorization.endsWith(']')) {
-//     autho = JSON.parse(authorization);
-//     if (!Array.isArray(autho)) {
-//         autho = [];
-//     }
+            try {
+                autho = JSON.parse(authorization); 
+                if (!Array.isArray(autho)) {
+                    autho = [authorization];
+                }
+            } catch (error) {
+                autho = [authorization]; 
+            }
 
-
-// for (const text of autho) {
-//     if (text === '' || text.startsWith('$')) {
-//         console.log('Authorization is Not There!');
-//     } else {
-//         await page.waitForTimeout(6000);
-//         const checkbox = iframe.locator(`//li[.//bdi[text()='${text}']]//div[contains(@class, 'sapMCb')]`);
-//         await checkbox.first().click();
-//         await page.waitForTimeout(2000);
-//     }
-// }
-// }
-// else{
-//     if (autho === '' || autho.startsWith('$')) {
-//         console.log('Authorization is Not There!');
-//     } else {
-//         await page.waitForTimeout(6000);
-//         const checkbox = iframe.locator(`//li[.//bdi[text()='${text}']]//div[contains(@class, 'sapMCb')]`);
-//         await checkbox.first().click();
-//         await page.waitForTimeout(2000);
-// }
-// }
-
-if (authorization.startsWith('[') && authorization.endsWith(']')) {
-    let autho = JSON.parse(authorization);
-    if (!Array.isArray(autho)) {
-        autho = [];
-    }
-
-    for (const text of autho) {
-        if (text === '' || text.startsWith('$')) {
-            console.log('Authorization is Not There!');
-        } else {
-            await page.waitForTimeout(6000);
-            const checkbox = iframe.locator(`//li[.//bdi[text()='${text}']]//div[contains(@class, 'sapMCb')]`);
-            await checkbox.first().click();
-            await page.waitForTimeout(2000);
-        }
-    }
-} else {
-    if (authorization.startsWith('$')) {
-        console.log('Authorization is Not There!');
-    } else {
-        await page.waitForTimeout(6000);
-        const checkbox = iframe.locator(`//li[.//bdi[text()='${authorization}']]//div[contains(@class, 'sapMCb')]`);
-        await checkbox.first().click();
-        await page.waitForTimeout(2000);
-    }
-}
+            for (const text of autho) {
+                if (text === '' || text.startsWith('$')) {
+                    console.log('Authorization is Not There!');
+                } else {
+                    await page.waitForTimeout(6000);
+                    const checkbox = iframe.locator(`//li[.//bdi[text()='${text}']]//div[contains(@class, 'sapMCb')]`);
+                    await checkbox.first().click();
+                    await page.waitForTimeout(2000);
+                }
+            }
 
             await iframe.getByRole('button', { name: 'Save Authorizations' }).click();
             console.log(`**gbStart**Sap_User_Creation**splitKeyValue**${click.firstName} SUser Authorization Successful Created**gbEnd**`);
