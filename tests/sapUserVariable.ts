@@ -2,20 +2,16 @@ export const sapUserCreation = [
     {
        firstName: '$FirstName',
        LastName: '$Lastname',
-       email: 'ravindrabharathi000',
+       email: '$Email_Name_Only',
        Language: '$Language',
        Date:'$Date',
        emailpathu: '$Email_Format'
     }
 ];
 
-// export const email_id = '$Email_Id';
+export const email_id = '$Email_Id';
 
-// export const password = '$Password';
-
-export const email_id = 'S0026851640';
-
-export const password = 'ldRoxvmZ874@';
+export const password = '$Password';
 
 export const authorization = $Authorization;
 
