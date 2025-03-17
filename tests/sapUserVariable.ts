@@ -13,7 +13,7 @@ export const email_id = '$Email_Id';
 
 export const password = '$Password';
 
-export const authorization = $Authorization;
+export const authorization = '$Authorization';
 
 export const Development_User_Id = '$Development_User_Id';
 

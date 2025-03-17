@@ -33,43 +33,54 @@ test.describe(() => {
             await page.waitForTimeout(4000);
             await iframe.locator('.sapMSltArrow').nth(0).click({ force: true });
             const dropdown = iframe.locator('.sapMSelectList');
+            await page.waitForTimeout(2000);
             if(await mail.isVisible()){
                 console.log(`${click.email} this email already there`);
                 console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} this email already there**gbEnd**`);
+                await page.waitForTimeout(2000);
             }else{
-            const option = dropdown.locator('li', { hasText: `${click.emailpathu}` }).nth(0);
-            await option.click(); 
+                const option = dropdown.locator('li', { hasText: `${click.emailpathu}` }).nth(0);
+                await option.click(); 
 
-            const today = new Date();
-            const maxDate = new Date();
-            maxDate.setFullYear(today.getFullYear() + 2);
-            const formattedDate = new Intl.DateTimeFormat('de-DE').format(maxDate)
-            const parseDate = (dateStr: any) => {
-                const [day, month, year] = dateStr.split('.').map(Number);
-                return new Date(year, month - 1, day);
-            };
-            
-            const userDate = parseDate(click.Date);
-            const maxDateObj = parseDate(formattedDate);
-            if(userDate < maxDateObj){
-              await iframe.locator('#__picker0-inner').click();
-              await iframe.locator('#__picker0-inner').fill(click.Date);
-              await page.waitForTimeout(4000);
-            }else{
-                await iframe.locator('#__picker0-inner').click();
-                await iframe.locator('#__picker0-inner').fill(formattedDate);
-                await page.waitForTimeout(4000);
-            }  
-            await page.waitForTimeout(6000);
-            await iframe.locator('#__select0-arrow').click();
-            await iframe.locator(`li:text("${click.Language}")`).click(); 
-            await iframe.getByRole('button', { name: "Submit" }).click();
-            await page.waitForTimeout(10000);
-            await expect(iframe.getByText('User was requested')).toBeVisible();
-            console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} SAP S-User Creation Successful**gbEnd**`);
-            await iframe.getByRole('button', { name: "OK" }).click();
-            await page.waitForTimeout(10000);
-        }
+                const today = new Date();
+                const maxDate = new Date();
+                maxDate.setFullYear(today.getFullYear() + 2);
+                const formattedDate = new Intl.DateTimeFormat('de-DE').format(maxDate)
+                const parseDate = (dateStr: any) => {
+                    const [day, month, year] = dateStr.split('.').map(Number);
+                    return new Date(year, month - 1, day);
+                };
+
+                const isValidDateFormat = (date: string) => {
+                    const regex = /^\d{2}\.\d{2}\.\d{4}$/; 
+                    return regex.test(date);
+                };
+                
+                const userDate = parseDate(click.Date);
+                const maxDateObj = parseDate(formattedDate);
+                if(userDate < maxDateObj){
+                    await iframe.locator('#__picker0-inner').click();
+                    await iframe.locator('#__picker0-inner').fill(click.Date);
+                    await page.waitForTimeout(4000);
+                }else{
+                    await iframe.locator('#__picker0-inner').click();
+                    await iframe.locator('#__picker0-inner').fill(formattedDate);
+                    await page.waitForTimeout(4000);
+                }  
+                if (!isValidDateFormat(click.Date)) {
+                    console.log(`Invalid date format: ${click.Date}. Please enter in DD.MM.YYYY format`);
+                }else{
+                    await page.waitForTimeout(6000);
+                    await iframe.locator('#__select0-arrow').click();
+                    await iframe.locator(`li:text("${click.Language}")`).click(); 
+                    await iframe.getByRole('button', { name: "Submit" }).click();
+                    await page.waitForTimeout(10000);
+                    await expect(iframe.getByText('User was requested')).toBeVisible();
+                    console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} SAP S-User Creation Successful**gbEnd**`);
+                    await iframe.getByRole('button', { name: "OK" }).click();
+                    await page.waitForTimeout(10000);
+                }
+            }
         }
     });
 }); 
