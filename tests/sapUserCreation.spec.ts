@@ -29,9 +29,14 @@ test.describe(() => {
             await iframe.getByPlaceholder("Enter First Name ...").fill(click.firstName);
             await iframe.getByPlaceholder("Enter Last Name ...").fill(click.LastName);
             await iframe.getByPlaceholder('Enter Email Username').fill(click.email);
+            const mail = iframe.getByText('Duplicate Email Address');
             await page.waitForTimeout(4000);
             await iframe.locator('.sapMSltArrow').nth(0).click({ force: true });
             const dropdown = iframe.locator('.sapMSelectList');
+            if(await mail.isVisible()){
+                console.log(`${click.email} this email already there`);
+                console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} this email already there**gbEnd**`);
+            }else{
             const option = dropdown.locator('li', { hasText: `${click.emailpathu}` }).nth(0);
             await option.click(); 
 
@@ -64,6 +69,7 @@ test.describe(() => {
             console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} SAP S-User Creation Successful**gbEnd**`);
             await iframe.getByRole('button', { name: "OK" }).click();
             await page.waitForTimeout(10000);
+        }
         }
     });
 }); 
