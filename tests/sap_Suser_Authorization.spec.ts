@@ -51,7 +51,7 @@ test.describe(() => {
             }
 
             await iframe.getByRole('button', { name: 'Save Authorizations' }).click();
-            console.log(`**gbStart**Sap_User_Creation**splitKeyValue**${click.firstName} SUser Authorization Successful Created**gbEnd**`);
+            console.log(`**gbStart**Sap_User_Creation**splitKeyValue**${click.firstName} SUser Authorization Successfully Created**gbEnd**`);
             await page.waitForTimeout(6000);
             
         }
