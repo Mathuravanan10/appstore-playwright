@@ -69,7 +69,7 @@ test.describe(() => {
                 }  
                 if (!isValidDateFormat(click.Date)) {
                     console.log(`Invalid date format: ${click.Date}. Please enter in DD.MM.YYYY format`);
-                    // console.log(`**gbStart**sapusercreation**splitKeyValue**Invalid date format: ${click.Date}. Please enter in DD.MM.YYYY format**gbEnd**`);
+                    console.log(`**gbStart**sapusercreation**splitKeyValue**Invalid date format: ${click.Date}. Please enter in DD.MM.YYYY format**gbEnd**`);
                     await page.waitForTimeout(2000);
                 }else{
                     await page.waitForTimeout(6000);
@@ -78,7 +78,7 @@ test.describe(() => {
                     await iframe.getByRole('button', { name: "Submit" }).click();
                     await page.waitForTimeout(10000);
                     await expect(iframe.getByText('User was requested')).toBeVisible();
-                    // console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} SAP S-User Creation Successful**gbEnd**`);
+                    console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} SAP S-User Creation Successful**gbEnd**`);
                     await iframe.getByRole('button', { name: "OK" }).click();
                     await page.waitForTimeout(10000);
                 }
