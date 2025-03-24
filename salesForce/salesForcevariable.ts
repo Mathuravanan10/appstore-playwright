@@ -23,8 +23,6 @@ export const extensionLead = [
     }
 ];
 
-const checkLead = $option;
-
 const pdfName = '$PDFName'
 
-export {LeadDetails, userName, Password, pdfName, checkLead};
+export {LeadDetails, userName, Password, pdfName};

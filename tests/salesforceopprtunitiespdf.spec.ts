@@ -1,6 +1,6 @@
 import { test, Page } from '@playwright/test';
 import { salesForceTestPage } from '../salesForce/salesForceTestpage';
-import { LeadDetails, Password, userName } from '../salesForce/salesForcevariable'
+import { LeadDetails, Password, userName, pdfName } from '../salesForce/salesForcevariable'
 
 test.describe(() => {
   test.setTimeout(800000);
@@ -15,7 +15,7 @@ test.describe(() => {
     await salesForce.salesForceLoginpage(URL, userName, Password);
   });
 
-  test('salesForce_Creation',async () => {
-    await salesForce.newLead(LeadDetails);
+  test('salesForce_opportunities_pdf',async () => {
+      await salesForce.opportunities(LeadDetails,pdfName);    
   });
 }); 
