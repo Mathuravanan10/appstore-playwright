@@ -17,9 +17,9 @@ test.describe(() => {
 
   test('salesForce Creation',async () => {
     if(checkLead === 'existinglead'){
-      await salesForce.newLead(LeadDetails);
       await salesForce.opportunities(LeadDetails,pdfName);
     }else{
+      await salesForce.newLead(LeadDetails);
       await salesForce.opportunities(LeadDetails,pdfName); 
     }
    
