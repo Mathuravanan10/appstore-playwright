@@ -1,20 +1,19 @@
-export const userName = '$userName';
+const userName = '$userName';
 
-export const Password = '$password';
+const Password = '$password';
 
-export const LeadDetails = [
+const LeadDetails =
     {
         Salutation: '$Salutation',
-        firstName: '$firstName',
-        lastName: '$lastName',
-        company: '$company',
-        phone: '$phone',
-        email: '$email',
-        product: '$product',
-        quantity: '$quantity',
-        states: '$states',
-    }
-];
+        firstName: '$FirstName',
+        lastName: '$LastName',
+        company: '$Company',
+        phone: '$Phone',
+        email: '$Email',
+        product: '$Product',
+        quantity: '$Quantity',
+        status: '$Status',
+    };
 
 export const extensionLead = [
     {
@@ -24,4 +23,8 @@ export const extensionLead = [
     }
 ];
 
-export const checkLead = '$existinglead';
+const checkLead = $option;
+
+const pdfName = '$PDFName'
+
+export {LeadDetails, userName, Password, pdfName, checkLead};
