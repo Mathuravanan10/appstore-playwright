@@ -1,19 +1,15 @@
-// const userName = '$userName';
+const userName = '$userName';
 
-// const Password = '$password';
-
-const userName = 'vijayakumarp@basiscloudsolutions.com.demoasset';
-
-const Password = 'Basiscloud@1234';
+const Password = '$password';
 
 const LeadDetails =
     {
         Salutation: '$Salutation',
         firstName: '$FirstName',
-        lastName: 'Karthick',
+        lastName: '$LastName',
         company: '$Company',
         phone: '$Phone',
-        email: 'vishnupriyaksamy@gmail.com',
+        email: '$Email',
         product: '$Product',
         quantity: '$Quantity',
         status: '$Status',
