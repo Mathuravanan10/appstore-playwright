@@ -205,7 +205,7 @@ export class salesForceTestPage {
     await this.page.getByLabel('*Company').fill(company);
     await this.page.waitForTimeout(3000);
     // await this.page.getByRole('button', { name: 'Cancel and close' }).click();
-    await this.page.getByRole('button', { name: 'Save' }).click();
+    await this.page.getByRole('button', { name: 'Save', exact: true }).click();
     await this.page.waitForTimeout(3000);
     console.log(`**gbStart**salesforce_newlead**splitKeyValue**SalesForce NewLead ${lastName} is created successfully**gbEnd**`);
     await this.page.waitForTimeout(2000);
