@@ -214,7 +214,7 @@ export class salesForceTestPage {
   }
 
   async opportunities(LeadDetails: any, pdfName: string){
-    const {email, lastName} = LeadDetails;
+    const {email, lastName, firstName} = LeadDetails;
     await this.page.getByPlaceholder('Search this list...').click();
     await this.page.getByPlaceholder('Search this list...').fill(email);
     await this.page.getByPlaceholder('Search this list...').press('Enter');
@@ -225,8 +225,13 @@ export class salesForceTestPage {
       console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**Nothing to see here please give the correct email id.**gbEnd**`);
       await this.page.waitForTimeout(2000);
     }else{
-      await this.page.getByRole('link', { name: `${lastName}` }).click();
-      await this.page.waitForTimeout(4000);
+      if(firstName.startsWith('$') || firstName === ''){
+        await this.page.getByRole('link', { name: `${lastName}` }).first().click();
+        await this.page.waitForTimeout(4000);
+      }else{
+        await this.page.getByRole('link', { name: `${firstName}${lastName}` }).first().click();
+        await this.page.waitForTimeout(4000);
+      }
       await this.page.getByRole('tab', { name: 'Details' }).click();
       const qualifiedText = await this.page.locator('lightning-formatted-text[data-output-element-id="output-field"]').nth(3).textContent();
       console.log(qualifiedText, 'ppp');
@@ -287,10 +292,15 @@ export class salesForceTestPage {
         await this.page.waitForTimeout(2000);
       }else{
         await this.page.waitForTimeout(4000);
-        const need = this.page.getByText('Needs Analysis');
-        if(await need.isVisible()){
+        if(firstName.startsWith('$') || firstName === ''){
           await this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link').click();
-          await this.page.waitForTimeout(4000);
+          await this.page.waitForTimeout(6000);
+        }else{
+          await this.page.getByRole('rowheader', { name: `${firstName}${lastName} Edit` }).getByRole('link').click();
+          await this.page.waitForTimeout(6000);
+        }
+        const need = this.page.getByText('Needs Analysis').first();
+        if(await need.isVisible()){
           await this.page.getByRole('button', { name: 'Show actions for this object' }).click();
           await this.page.waitForTimeout(4000);
           await this.page.getByRole('menuitem', { name: 'New Quote' }).click();
@@ -313,7 +323,6 @@ export class salesForceTestPage {
           console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**SalesForce NewLead ${lastName} is PDF created successfully**gbEnd**`);
           await this.page.waitForTimeout(2000);
         }else{
-          await this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link').click();
           await this.page.waitForTimeout(4000);
           await this.page.getByRole('button', { name: 'Edit Stage' }).click();
           await this.page.waitForTimeout(4000);
@@ -344,7 +353,7 @@ export class salesForceTestPage {
           await this.page.waitForTimeout(6000);
           await this.page.getByRole('link', { name: pdfName }).first().click();
           await this.page.getByRole('button', { name: 'Create PDF' }).click();
-          await this.page.waitForTimeout(4000);
+          await this.page.waitForTimeout(6000);
           await this.page.getByRole('heading', { name: 'PDF Preview' }).click();
           await this.page.getByRole('button', { name: 'Save to Quote' }).click();
           // await this.page.getByRole('button', { name: 'Cancel and close' }).click();
