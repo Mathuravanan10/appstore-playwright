@@ -11,15 +11,16 @@ export class salesForceTestPage {
     await this.page.goto(URL);
     await this.page.getByLabel('Username').click();
     await this.page.getByLabel('Username').fill(userName);
+    await this.page.waitForTimeout(3000);
     await this.page.getByLabel('Password').click();
     await this.page.getByLabel('Password').fill(Password);
     await this.page.getByRole('button', { name: 'Log In to Sandbox' }).click();  
-    await this.page.waitForTimeout(6000);
+    await this.page.waitForTimeout(8000);
     await this.page.getByRole('button', { name: 'App Launcher' }).click();
     await this.page.getByRole('option', { name: 'Sales', exact: true }).click();
-    await this.page.waitForTimeout(3000);
+    await this.page.waitForTimeout(6000);
     await this.page.getByRole('link', { name: 'Leads', exact: true }).click();
-    await this.page.waitForTimeout(3000);
+    await this.page.waitForTimeout(6000);
   }
 
   async salesForceLeadCreate(LeadDetails: any) {
@@ -177,7 +178,7 @@ export class salesForceTestPage {
   async newLead (LeadDetails: any){
     const {Salutation, lastName, company, phone, email, product, quantity, status} = LeadDetails;
     await this.page.getByRole('button', { name: 'New' }).click();
-    await this.page.waitForTimeout(3000);
+    await this.page.waitForTimeout(6000);
     await this.page.getByRole('combobox', { name: 'Salutation' }).click();
     await this.page.getByRole('option', { name: Salutation }).locator('span').nth(1).click();
     await this.page.waitForTimeout(3000);
@@ -203,7 +204,7 @@ export class salesForceTestPage {
     await this.page.waitForTimeout(3000);
     await this.page.getByLabel('*Company').click();
     await this.page.getByLabel('*Company').fill(company);
-    await this.page.waitForTimeout(3000);
+    await this.page.waitForTimeout(4000);
     // await this.page.getByRole('button', { name: 'Cancel and close' }).click();
     await this.page.getByRole('button', { name: 'Save', exact: true }).click();
     await this.page.waitForTimeout(3000);
@@ -217,7 +218,7 @@ export class salesForceTestPage {
     await this.page.getByPlaceholder('Search this list...').click();
     await this.page.getByPlaceholder('Search this list...').fill(email);
     await this.page.getByPlaceholder('Search this list...').press('Enter');
-    await this.page.waitForTimeout(3000);
+    await this.page.waitForTimeout(6000);
     const seacrh = this.page.getByRole('heading', { name: 'Nothing to see here' });
     if(await seacrh.isVisible()){
       console.log('Nothing to see here please give the crt email id');
@@ -225,6 +226,7 @@ export class salesForceTestPage {
       await this.page.waitForTimeout(2000);
     }else{
       await this.page.getByRole('link', { name: `${lastName}` }).click();
+      await this.page.waitForTimeout(4000);
       await this.page.getByRole('tab', { name: 'Details' }).click();
       const qualifiedText = await this.page.locator('lightning-formatted-text[data-output-element-id="output-field"]').nth(3).textContent();
       console.log(qualifiedText, 'ppp');
@@ -288,38 +290,38 @@ export class salesForceTestPage {
         const need = this.page.getByText('Needs Analysis');
         if(await need.isVisible()){
           await this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link').click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           await this.page.getByRole('button', { name: 'Show actions for this object' }).click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           await this.page.getByRole('menuitem', { name: 'New Quote' }).click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           await this.page.getByLabel('*Quote Name').click();
           await this.page.getByLabel('*Quote Name').fill(pdfName);
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           await this.page.getByRole('button', { name: 'Save' }).click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           await this.page.getByRole('link', { name: pdfName }).first().click();
           await this.page.getByRole('button', { name: 'Create PDF' }).click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           await this.page.getByRole('heading', { name: 'PDF Preview' }).click();
           await this.page.getByRole('button', { name: 'Save to Quote' }).click();
           // await this.page.getByRole('button', { name: 'Cancel and close' }).click();
           const listItem = this.page.locator('li.forceContentVirtualRelatedListStencil').first();
           const fileName = (await listItem.textContent())?.trim() || 'No file name found';
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           console.log(`File Name: ${fileName.trim()}`); 
           console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**SalesForce NewLead ${lastName} is PDF created successfully**gbEnd**`);
           await this.page.waitForTimeout(2000);
         }else{
           await this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link').click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           await this.page.getByRole('button', { name: 'Edit Stage' }).click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           await this.page.getByRole('combobox', { name: 'Stage' }).click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           const status = this.page.locator('lightning-base-combobox-item[data-value="Needs Analysis"]');
           await status.click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           const commits = this.page.getByLabel('*Comments');
           const commitIsvisibles = await commits.isVisible();
           if(commitIsvisibles){
@@ -330,25 +332,25 @@ export class salesForceTestPage {
             console.log('Commit input not found!');
           }
           await this.page.getByRole('button', { name: 'Save' }).click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           await this.page.getByRole('button', { name: 'Show actions for this object' }).click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           await this.page.getByRole('menuitem', { name: 'New Quote' }).click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(6000);
           await this.page.getByLabel('*Quote Name').click();
           await this.page.getByLabel('*Quote Name').fill(pdfName);
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           await this.page.getByRole('button', { name: 'Save' }).click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(6000);
           await this.page.getByRole('link', { name: pdfName }).first().click();
           await this.page.getByRole('button', { name: 'Create PDF' }).click();
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           await this.page.getByRole('heading', { name: 'PDF Preview' }).click();
           await this.page.getByRole('button', { name: 'Save to Quote' }).click();
           // await this.page.getByRole('button', { name: 'Cancel and close' }).click();
           const listItem = this.page.locator('li.forceContentVirtualRelatedListStencil').first();
           const fileName = (await listItem.textContent())?.trim() || 'No file name found';
-          await this.page.waitForTimeout(2000);
+          await this.page.waitForTimeout(4000);
           console.log(`File Name: ${fileName.trim()}`); 
           console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**SalesForce NewLead ${lastName} is PDF created successfully**gbEnd**`);
           await this.page.waitForTimeout(2000);
