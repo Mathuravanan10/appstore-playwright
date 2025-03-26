@@ -277,7 +277,7 @@ export class salesForceTestPage {
         await this.page.getByRole('button', { name: 'Save' }).click();
         await this.page.waitForTimeout(6000);
       }
-      await this.page.waitForTimeout(3000);
+      await this.page.waitForTimeout(10000);
       await this.page.getByRole('link', { name: 'Opportunities' }).click();
       await this.page.waitForTimeout(3000);
       await this.page.reload();
@@ -296,15 +296,15 @@ export class salesForceTestPage {
         await this.page.waitForTimeout(2000);
       }else{
         await this.page.waitForTimeout(4000);
-        if(firstName.startsWith('$') || firstName === ''){
-          await this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link').click();
-          await this.page.waitForTimeout(6000);
-        }else{
-          await this.page.getByRole('rowheader', { name: `${firstName}${lastName} Edit` }).getByRole('link').click();
-          await this.page.waitForTimeout(6000);
-        }
         const need = this.page.getByText('Needs Analysis').first();
         if(await need.isVisible()){
+          if(firstName.startsWith('$') || firstName === ''){
+            await this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link').click();
+            await this.page.waitForTimeout(6000);
+          }else{
+            await this.page.getByRole('rowheader', { name: `${firstName}${lastName} Edit` }).getByRole('link').click();
+            await this.page.waitForTimeout(6000);
+          }
           await this.page.getByRole('button', { name: 'Show actions for this object' }).click();
           await this.page.waitForTimeout(4000);
           await this.page.getByRole('menuitem', { name: 'New Quote' }).click();
@@ -329,6 +329,13 @@ export class salesForceTestPage {
           await this.page.waitForTimeout(2000);
         }else{
           await this.page.waitForTimeout(4000);
+          if(firstName.startsWith('$') || firstName === ''){
+            await this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link').click();
+            await this.page.waitForTimeout(6000);
+          }else{
+            await this.page.getByRole('rowheader', { name: `${firstName}${lastName} Edit` }).getByRole('link').click();
+            await this.page.waitForTimeout(6000);
+          }
           await this.page.getByRole('button', { name: 'Edit Stage' }).click();
           await this.page.waitForTimeout(4000);
           await this.page.getByRole('combobox', { name: 'Stage' }).click();
