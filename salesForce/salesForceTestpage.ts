@@ -235,7 +235,7 @@ export class salesForceTestPage {
       await this.page.getByRole('tab', { name: 'Details' }).click();
       const qualifiedText = await this.page.locator('lightning-formatted-text[data-output-element-id="output-field"]').nth(3).textContent();
       console.log(qualifiedText, 'ppp');
-      if(qualifiedText === 'Open'){
+      if(qualifiedText === 'Open' || qualifiedText === 'Unqualified'){
         await this.page.waitForTimeout(3000);
         const editlead = this.page.getByRole('button', { name: 'Edit Lead Status' });
         await editlead.click();
