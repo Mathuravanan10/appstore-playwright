@@ -229,7 +229,7 @@ export class salesForceTestPage {
         await this.page.getByRole('link', { name: `${lastName}` }).first().click();
         await this.page.waitForTimeout(4000);
       }else{
-        await this.page.getByRole('link', { name: `${firstName}${lastName}` }).first().click();
+        await this.page.getByRole('link', { name: `${firstName} ${lastName}` }).first().click();
         await this.page.waitForTimeout(4000);
       }
       await this.page.getByRole('tab', { name: 'Details' }).click();
@@ -302,7 +302,15 @@ export class salesForceTestPage {
             await this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link').click();
             await this.page.waitForTimeout(6000);
           }else{
-            await this.page.getByRole('rowheader', { name: `${firstName}${lastName} Edit` }).getByRole('link').click();
+            try {
+              const name = this.page.getByRole('rowheader', { name: `${firstName}${lastName} Edit` }).getByRole('link');
+              await name.waitFor({ state: 'visible', timeout: 3000 });
+              await name.click();
+            } catch (error) {
+              const fallbackName = this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link');
+              await fallbackName.waitFor({ state: 'visible', timeout: 3000 });
+              await fallbackName.click();
+            }
             await this.page.waitForTimeout(6000);
           }
           await this.page.getByRole('button', { name: 'Show actions for this object' }).click();
@@ -333,7 +341,15 @@ export class salesForceTestPage {
             await this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link').click();
             await this.page.waitForTimeout(6000);
           }else{
-            await this.page.getByRole('rowheader', { name: `${firstName}${lastName} Edit` }).getByRole('link').click();
+            try {
+              const name = this.page.getByRole('rowheader', { name: `${firstName}${lastName} Edit` }).getByRole('link');
+              await name.waitFor({ state: 'visible', timeout: 3000 });
+              await name.click();
+            } catch (error) {
+              const fallbackName = this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link');
+              await fallbackName.waitFor({ state: 'visible', timeout: 3000 });
+              await fallbackName.click();
+            } 
             await this.page.waitForTimeout(6000);
           }
           await this.page.getByRole('button', { name: 'Edit Stage' }).click();
