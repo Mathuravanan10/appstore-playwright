@@ -15,12 +15,12 @@ export class salesForceTestPage {
     await this.page.getByLabel('Password').click();
     await this.page.getByLabel('Password').fill(Password);
     await this.page.getByRole('button', { name: 'Log In to Sandbox' }).click();  
-    await this.page.waitForTimeout(8000);
+    await this.page.waitForTimeout(10000);
     await this.page.getByRole('button', { name: 'App Launcher' }).click();
     await this.page.getByRole('option', { name: 'Sales', exact: true }).click();
-    await this.page.waitForTimeout(6000);
+    await this.page.waitForTimeout(8000);
     await this.page.getByRole('link', { name: 'Leads', exact: true }).click();
-    await this.page.waitForTimeout(6000);
+    await this.page.waitForTimeout(8000);
   }
 
   async salesForceLeadCreate(LeadDetails: any) {
@@ -259,32 +259,36 @@ export class salesForceTestPage {
           console.log('Commit input not found!');
         }
         await this.page.getByRole('button', { name: 'Save' }).click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForTimeout(4000);
         await this.page.getByRole('button', { name: 'Edit Lead Status' }).click();
         await this.page.getByRole('combobox', { name: 'Lead Status' }).click();
+        await this.page.waitForTimeout(2000);
         const opation = this.page.getByRole('option', { name: 'Qualified', exact: true }).locator('span').nth(1);
         await opation.click();
         await this.page.getByRole('button', { name: 'Save' }).click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForTimeout(6000);
       } else if(qualifiedText === 'Contacted'){
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForTimeout(3000);
         await this.page.getByRole('button', { name: 'Edit Lead Status' }).click();
         await this.page.getByRole('combobox', { name: 'Lead Status' }).click();
+        await this.page.waitForTimeout(2000);
         const opation = this.page.getByRole('option', { name: 'Qualified', exact: true }).locator('span').nth(1);
         await opation.click();
         await this.page.getByRole('button', { name: 'Save' }).click();
-        await this.page.waitForTimeout(2000);
+        await this.page.waitForTimeout(6000);
       }
       await this.page.waitForTimeout(3000);
       await this.page.getByRole('link', { name: 'Opportunities' }).click();
       await this.page.waitForTimeout(3000);
+      await this.page.reload();
+      await this.page.waitForTimeout(3000);
       await this.page.getByRole('button', { name: 'Select a List View:' }).click();
-      await this.page.getByRole('option', { name: 'My Opportunities' }).click();
+      await this.page.getByRole('option', { name: 'All Opportunities' }).click();
       await this.page.waitForTimeout(2000);
       await this.page.getByPlaceholder('Search this list...').click();
       await this.page.getByPlaceholder('Search this list...').fill(email);
       await this.page.getByPlaceholder('Search this list...').press('Enter');
-      await this.page.waitForTimeout(2000);
+      await this.page.waitForTimeout(4000);
       const seacrhs = this.page.getByRole('heading', { name: 'Nothing to see here' });
       if(await seacrhs.isVisible()){
         console.log('Nothing to see here please give the correct  email id');
@@ -315,6 +319,7 @@ export class salesForceTestPage {
           await this.page.waitForTimeout(4000);
           await this.page.getByRole('heading', { name: 'PDF Preview' }).click();
           await this.page.getByRole('button', { name: 'Save to Quote' }).click();
+          await this.page.waitForTimeout(4000);
           // await this.page.getByRole('button', { name: 'Cancel and close' }).click();
           const listItem = this.page.locator('li.forceContentVirtualRelatedListStencil').first();
           const fileName = (await listItem.textContent())?.trim() || 'No file name found';
@@ -356,6 +361,7 @@ export class salesForceTestPage {
           await this.page.waitForTimeout(6000);
           await this.page.getByRole('heading', { name: 'PDF Preview' }).click();
           await this.page.getByRole('button', { name: 'Save to Quote' }).click();
+          await this.page.waitForTimeout(4000);
           // await this.page.getByRole('button', { name: 'Cancel and close' }).click();
           const listItem = this.page.locator('li.forceContentVirtualRelatedListStencil').first();
           const fileName = (await listItem.textContent())?.trim() || 'No file name found';
