@@ -18,7 +18,7 @@ export class salesForceTestPage {
     await this.page.waitForTimeout(10000);
     await this.page.getByRole('button', { name: 'App Launcher' }).click();
     await this.page.getByRole('option', { name: 'Sales', exact: true }).click();
-    await this.page.waitForTimeout(8000);
+    await this.page.waitForTimeout(10000);
     await this.page.getByRole('link', { name: 'Leads', exact: true }).click();
     await this.page.waitForTimeout(8000);
   }
@@ -176,6 +176,7 @@ export class salesForceTestPage {
   }
 
   async newLead (LeadDetails: any){
+    // demo account newlead
     const {Salutation, lastName, company, phone, email, product, quantity, status} = LeadDetails;
     await this.page.getByRole('button', { name: 'New' }).click();
     await this.page.waitForTimeout(6000);
@@ -214,6 +215,7 @@ export class salesForceTestPage {
   }
 
   async opportunities(LeadDetails: any, pdfName: string){
+    // demo account opportunities
     const {email, lastName, firstName} = LeadDetails;
     await this.page.getByPlaceholder('Search this list...').click();
     await this.page.getByPlaceholder('Search this list...').fill(email);
@@ -393,6 +395,116 @@ export class salesForceTestPage {
           console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**SalesForce NewLead ${lastName} is PDF created successfully**gbEnd**`);
           await this.page.waitForTimeout(2000);
         }
+      }
+    }
+  }
+  async floatingnewlead (LeadDetails: any){
+    const {Salutation, lastName, company, phone, email, product, status} = LeadDetails;
+    await this.page.getByRole('button', { name: 'New' }).click();
+    await this.page.waitForTimeout(6000);
+    await this.page.getByRole('combobox', { name: 'Salutation' }).click();
+    await this.page.getByRole('option', { name: Salutation }).locator('span').nth(1).click();
+    await this.page.waitForTimeout(3000);
+    await this.page.getByPlaceholder('Last Name').click();
+    await this.page.getByPlaceholder('Last Name').fill(lastName);
+    await this.page.waitForTimeout(3000);
+    await this.page.getByRole('combobox', { name: 'Product Category' }).click();
+    await this.page.getByRole('option', { name: product }).locator('span').nth(1).click();
+    await this.page.getByRole('combobox', { name: 'Lead Status' }).click();
+    await this.page.getByRole('option', { name: status }).locator('span').nth(1).click();
+    await this.page.getByLabel('*Phone').click();
+    await this.page.getByLabel('*Phone').fill(phone);
+    await this.page.getByLabel('*Email').click();
+    await this.page.getByLabel('*Email').fill(email);
+    await this.page.getByLabel('*Company').click();
+    await this.page.getByLabel('*Company').fill(company);
+    await this.page.waitForTimeout(4000);
+    // await this.page.getByRole('button', { name: 'Cancel and close' }).click();
+    await this.page.getByRole('button', { name: 'Save', exact: true }).click();
+    await this.page.waitForTimeout(3000);
+    console.log(`**gbStart**salesforce_newlead**splitKeyValue**SalesForce NewLead ${lastName} is created successfully**gbEnd**`);
+    await this.page.waitForTimeout(2000);
+  }
+
+  async floatingopportunities(LeadDetails: any, pdfName: string){
+    const {email, lastName, firstName} = LeadDetails;
+    await this.page.getByRole('link', { name: 'Opportunities' }).click();
+    await this.page.waitForTimeout(3000);
+    await this.page.getByRole('button', { name: 'Select a List View:' }).click();
+    await this.page.waitForTimeout(3000);
+    await this.page.getByRole('option', { name: 'All Opportunities' }).click();
+    await this.page.waitForTimeout(4000);
+    await this.page.getByPlaceholder('Search this list...').click();
+    await this.page.getByPlaceholder('Search this list...').fill(firstName);
+    await this.page.getByPlaceholder('Search this list...').press('Enter');
+    await this.page.waitForTimeout(4000);
+    const seacrhs = this.page.getByRole('heading', { name: 'Nothing to see here' });
+    if(await seacrhs.isVisible()){
+      console.log('Nothing to see here please give the correct  email id');
+      console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**Nothing to see here your account is not Opportunities there.please give the correct account id.**gbEnd**`);
+      await this.page.waitForTimeout(2000);
+    }else{
+      await this.page.waitForTimeout(4000);
+      const need = this.page.getByText('Qualification').first();
+      if(await need.isVisible()){
+        if(firstName.startsWith('$') || firstName === ''){
+          await this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link').click();
+          await this.page.waitForTimeout(6000);
+        }else{
+          try {
+            const name = this.page.getByRole('rowheader', { name: `${firstName}${lastName} Edit` }).getByRole('link');
+            await name.waitFor({ state: 'visible', timeout: 3000 });
+            await name.click();
+          } catch (error) {
+            const fallbackName = this.page.getByRole('rowheader', { name: `${lastName} Edit` }).getByRole('link');
+            await fallbackName.waitFor({ state: 'visible', timeout: 3000 });
+            await fallbackName.click();
+          }
+          await this.page.waitForTimeout(6000);
+        }
+        await this.page.getByRole('button', { name: 'Edit Stage' }).click();
+        await this.page.waitForTimeout(4000);
+        await this.page.getByRole('combobox', { name: 'Stage' }).click();
+        await this.page.waitForTimeout(4000);
+        const status = this.page.locator('lightning-base-combobox-item[data-value="Needs Analysis"]');
+        await status.click();
+        await this.page.waitForTimeout(4000);
+        const commits = this.page.getByLabel('*Comments');
+        const commitIsvisibles = await commits.isVisible();
+        if(commitIsvisibles){
+          await commits.click();
+          await commits.fill('yes');
+          await this.page.waitForTimeout(2000);
+        }else{
+          console.log('Commit input not found!');
+        }
+        await this.page.getByRole('button', { name: 'Save' }).click();
+        await this.page.waitForTimeout(4000);
+        await this.page.getByRole('button', { name: 'Show actions for this object' }).click();
+        await this.page.waitForTimeout(4000);
+        await this.page.getByRole('menuitem', { name: 'New Quote' }).click();
+        await this.page.waitForTimeout(4000);
+        await this.page.getByLabel('*Quote Name').click();
+        await this.page.getByLabel('*Quote Name').fill(pdfName);
+        await this.page.waitForTimeout(4000);
+        await this.page.getByRole('button', { name: 'Save' }).click();
+        await this.page.waitForTimeout(4000);
+        await this.page.getByRole('link', { name: pdfName }).first().click();
+        await this.page.getByRole('button', { name: 'Create PDF' }).click();
+        await this.page.waitForTimeout(4000);
+        await this.page.getByRole('heading', { name: 'PDF Preview' }).click();
+        await this.page.getByRole('button', { name: 'Save to Quote' }).click();
+        await this.page.waitForTimeout(4000);
+        // await this.page.getByRole('button', { name: 'Cancel and close' }).click();
+        const listItem = this.page.locator('li.forceContentVirtualRelatedListStencil').first();
+        const fileName = (await listItem.textContent())?.trim() || 'No file name found';
+        await this.page.waitForTimeout(4000);
+        console.log(`File Name: ${fileName.trim()}`); 
+        console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**SalesForce NewLead ${fileName.trim()} is PDF created successfully**gbEnd**`);
+        await this.page.waitForTimeout(2000);
+      }else{
+        console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**${firstName}${lastName} acoount is not Qualification.**gbEnd**`);
+        await this.page.waitForTimeout(2000);
       }
     }
   }
