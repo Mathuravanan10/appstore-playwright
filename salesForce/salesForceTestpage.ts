@@ -501,6 +501,7 @@ export class salesForceTestPage {
         await this.page.waitForTimeout(4000);
         console.log(`File Name: ${fileName.trim()}`); 
         console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**SalesForce NewLead ${fileName.trim()} is PDF created successfully**gbEnd**`);
+        console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**SalesForce Quotes creation Url:${this.page.url()} **gbEnd**`);
         await this.page.waitForTimeout(2000);
       }else{
         console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**${firstName}${lastName} acoount is not Qualification.**gbEnd**`);

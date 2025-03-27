@@ -23,6 +23,6 @@ export const extensionLead = [
     }
 ];
 
-const pdfName = '$Quotes_Name'
+const pdfName = '$Quotes_Name';
 
 export {LeadDetails, userName, Password, pdfName};
