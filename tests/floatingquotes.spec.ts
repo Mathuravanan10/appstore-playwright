@@ -57,9 +57,11 @@ test.describe(() => {
             const valueElement = page.locator('lightning-formatted-text[data-output-element-id="output-field"]').nth(5);
             const text = await valueElement.textContent();
             console.log('TotalPriceWithDiscount:', text?.trim());
+            const adddiscount = text?.trim();
             await page.waitForTimeout(2000);
             const totalPrice = await page.locator('lightning-formatted-text[data-output-element-id="output-field"]').nth(9).textContent();
             console.log('GrandTotalWithDiscoun:', totalPrice);
+            console.log(`**gbStart**salesforce_quote_discount**splitKeyValue**SalesForce Quotes Discount added Total Price:${totalPrice} and Total Price With Discount:${adddiscount}**gbEnd**`);
         } catch (error) {
             console.error('Test failed:', error);
         }
