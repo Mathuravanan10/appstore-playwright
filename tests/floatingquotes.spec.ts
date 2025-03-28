@@ -41,9 +41,9 @@ test.describe(() => {
             await page.getByRole('button', { name: 'Save' }).click();
             await page.waitForTimeout(2000);
             await page.getByRole('button', { name: 'Submit for Approval' }).click();
-            await page.waitForTimeout(2000);
+            await page.waitForTimeout(4000);
             await page.getByRole('button', { name: 'Submit' }).click();
-            await page.waitForTimeout(2000);
+            await page.waitForTimeout(4000);
             await page.getByRole('button', { name: 'Notifications' }).click();
             await page.waitForTimeout(2000);
             await page.getByRole('link', { name: new RegExp(`Vijayakumar Palani is requesting approval for quote Quote Name: ${quoteName}`) }).first().click();
@@ -54,6 +54,7 @@ test.describe(() => {
             await page.waitForTimeout(5000);
             await page.getByRole('link', { name: `${quoteName}`, exact: true }).click();
             await page.waitForTimeout(2000);
+            await page.evaluate(() => window.scrollBy(0, 500));
             const valueElement = page.locator('lightning-formatted-text[data-output-element-id="output-field"]').nth(5);
             const text = await valueElement.textContent();
             console.log('TotalPriceWithDiscount:', text?.trim());
