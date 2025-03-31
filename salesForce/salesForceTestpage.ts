@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 
 export class salesForceTestPage {
   readonly page: Page;
@@ -511,6 +511,7 @@ export class salesForceTestPage {
         await this.page.waitForTimeout(2000);
       }else{
         console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**${firstName}${lastName} account is not Qualification.**gbEnd**`);
+        expect(this.page.getByText('Qualification').first()).toBeVisible();
         await this.page.waitForTimeout(2000);
       }
     }
