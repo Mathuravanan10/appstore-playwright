@@ -489,7 +489,13 @@ export class salesForceTestPage {
         await this.page.waitForTimeout(4000);
         await this.page.getByRole('button', { name: 'Save' }).click();
         await this.page.waitForTimeout(4000);
-        // await this.page.getByRole('link', { name: pdfName }).first().click();
+        console.log(`**gbStart**salesforce_PDF**splitKeyValue**Your Quotes create successfully.Url:${this.page.url()}**gbEnd**`);
+        await this.page.getByRole('link', { name: pdfName }).first().click();
+        await this.page.waitForTimeout(4000);
+        await this.page.getByRole('button', { name: 'Show more actions' }).click();
+        await this.page.waitForTimeout(4000);
+        await this.page.getByRole('menuitem', { name: 'Generate quote' }).click();
+        await this.page.waitForTimeout(4000);
         // await this.page.getByRole('button', { name: 'Create PDF' }).click();
         // await this.page.waitForTimeout(4000);
         // await this.page.getByRole('heading', { name: 'PDF Preview' }).click();
@@ -501,10 +507,10 @@ export class salesForceTestPage {
         // await this.page.waitForTimeout(4000);
         // console.log(`File Name: ${fileName.trim()}`); 
         // console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**SalesForce NewLead ${fileName.trim()} is PDF created successfully**gbEnd**`);
-        console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**Your Quotes create successfully.Url:${this.page.url()} **gbEnd**`);
+        console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**PDF created Url:${this.page.url()}**gbEnd**`);
         await this.page.waitForTimeout(2000);
       }else{
-        console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**${firstName}${lastName} acoount is not Qualification.**gbEnd**`);
+        console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**${firstName}${lastName} account is not Qualification.**gbEnd**`);
         await this.page.waitForTimeout(2000);
       }
     }
