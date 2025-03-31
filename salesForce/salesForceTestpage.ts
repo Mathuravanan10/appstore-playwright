@@ -489,7 +489,7 @@ export class salesForceTestPage {
         await this.page.waitForTimeout(4000);
         await this.page.getByRole('button', { name: 'Save' }).click();
         await this.page.waitForTimeout(4000);
-        console.log(`**gbStart**salesforce_PDF**splitKeyValue**Your Quotes create successfully.Url:${this.page.url()}**gbEnd**`);
+        console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**Your Quotes create successfully.Url:${this.page.url()}**gbEnd**`);
         await this.page.getByRole('link', { name: pdfName }).first().click();
         await this.page.waitForTimeout(4000);
         await this.page.getByRole('button', { name: 'Show more actions' }).click();
