@@ -565,11 +565,11 @@ export class salesForceTestPage {
     await this.page.waitForTimeout(2000);
     await this.page.selectOption('select[name="Payment_Status"]', paymentstatus);
     await this.page.waitForTimeout(2000);
-    if(bankname.startsWith('$') || bankname === ''){
+    if(!bankname.startsWith('$')){
       await this.page.getByRole('textbox', { name: 'Bank Name' }).fill(bankname);
       await this.page.waitForTimeout(2000);
     }
-    if(branch.startsWith('$') || branch === ''){
+    if(!branch.startsWith('$')){
     await this.page.getByRole('textbox', { name: 'Branch' }).fill(branch);
     await this.page.waitForTimeout(2000);
     }
