@@ -26,7 +26,7 @@ export const extensionLead = [
 const pdfName = '$Quotes_Name';
 
 const ordercreation = {
-    leadname : '$Lead_Name',
+    leadname : '$Quote_Name',
     amount: '$Amound',
     paymentmode: '$Payment_Mode',
     paymentstatus: '$Payment_Status',
