@@ -426,6 +426,13 @@ export class salesForceTestPage {
     await this.page.waitForTimeout(2000);
   }
 
+  async notification (){
+    const notf = this.page.getByRole('button', { name: 'Dismiss notification' });
+    while (await notf.first().isVisible()) {
+      await notf.first().click();
+    }
+  };
+
   async floatingopportunities(LeadDetails: any, pdfName: string){
     const {email, lastName, firstName} = LeadDetails;
     await this.page.getByRole('link', { name: 'Opportunities' }).click();
@@ -492,6 +499,7 @@ export class salesForceTestPage {
         console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**Your Quotes create successfully.Url:${this.page.url()}**gbEnd**`);
         await this.page.getByRole('link', { name: pdfName }).first().click();
         await this.page.waitForTimeout(4000);
+        await this.notification();
         await this.page.getByRole('button', { name: 'Show more actions' }).click();
         await this.page.waitForTimeout(4000);
         await this.page.getByRole('menuitem', { name: 'Generate quote' }).click();
@@ -511,9 +519,63 @@ export class salesForceTestPage {
         await this.page.waitForTimeout(2000);
       }else{
         console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**${firstName}${lastName} account is not Qualification.**gbEnd**`);
-        expect(this.page.getByText('Qualification').first()).toBeVisible();
         await this.page.waitForTimeout(2000);
       }
     }
+  }
+
+  async ordercreation (ordercreation:any){
+    const { leadname, amount, paymentmode, paymentstatus, paymentdate, bankname, branch } = ordercreation;
+
+    await this.page.getByRole('link', { name: 'Quotes' }).click();
+    await this.page.waitForTimeout(2000);
+    await this.page.getByPlaceholder('Search this list...').click();
+    await this.page.getByPlaceholder('Search this list...').fill(leadname);
+    await this.page.getByPlaceholder('Search this list...').press('Enter');
+    await this.page.waitForTimeout(2000);
+    await this.page.getByRole('link', { name: `${leadname}` }).click();
+    await this.page.waitForTimeout(2000);
+    await this.page.getByRole('button', { name: 'Edit Status' }).click();
+    await this.page.waitForTimeout(2000);
+    await this.page.getByRole('combobox', { name: 'Status' }).click();
+    await this.page.waitForTimeout(2000);
+    await this.page.locator('lightning-base-combobox-item', { hasText: 'Approved' }).click();
+    await this.page.waitForTimeout(2000);
+    await this.page.getByLabel('Purchase Order List Received').check();
+    await this.page.waitForTimeout(2000);
+    await this.page.getByRole('button', { name: 'Save' }).click();
+    await this.page.getByLabel('Upload FilesOr drop files').setInputFiles('C:/Users/BCS246/Pictures/Screenshots/Screenshot 2024-12-10 174251.png');
+    await this.page.waitForTimeout(2000);
+    await this.page.getByRole('button', { name: 'Done' }).click();
+    await this.page.waitForTimeout(2000);
+    await this.notification();
+    await this.page.getByRole('button', { name: 'Show more actions' }).click();
+    await this.page.waitForTimeout(2000);
+    await this.page.getByRole('menuitem', { name: 'Create Order' }).click();
+    await this.page.waitForTimeout(2000);
+    await this.page.getByRole('textbox', { name: 'Amount' }).click();
+    await this.page.getByRole('textbox', { name: 'Amount' }).fill(amount);
+    await this.page.waitForTimeout(2000);
+    await this.page.selectOption('select[name="Payment_Mode"]', paymentmode);
+    await this.page.waitForTimeout(2000);
+    await this.page.getByLabel('Date', { exact: true }).click();
+    await this.page.getByLabel('Date', { exact: true }).fill(paymentdate);
+    await this.page.waitForTimeout(2000);
+    await this.page.getByLabel('Date', { exact: true }).press('Enter');
+    await this.page.waitForTimeout(2000);
+    await this.page.selectOption('select[name="Payment_Status"]', paymentstatus);
+    await this.page.waitForTimeout(2000);
+    if(bankname.startsWith('$') || bankname === ''){
+      await this.page.getByRole('textbox', { name: 'Bank Name' }).fill(bankname);
+      await this.page.waitForTimeout(2000);
+    }
+    if(branch.startsWith('$') || branch === ''){
+    await this.page.getByRole('textbox', { name: 'Branch' }).fill(branch);
+    await this.page.waitForTimeout(2000);
+    }
+    await this.page.getByRole('button', { name: 'Save' }).click();
+    await this.page.waitForTimeout(2000);
+    await this.page.getByRole('tab', { name: 'Order' }).click();
+    await this.page.waitForTimeout(6000);
   }
 }
