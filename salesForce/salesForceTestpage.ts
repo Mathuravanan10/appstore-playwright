@@ -544,15 +544,16 @@ export class salesForceTestPage {
     await this.page.getByLabel('Purchase Order List Received').check();
     await this.page.waitForTimeout(2000);
     await this.page.getByRole('button', { name: 'Save' }).click();
+    await this.page.waitForTimeout(4000);
     await this.page.getByLabel('Upload FilesOr drop files').setInputFiles('C:/Users/BCS246/Pictures/Screenshots/Screenshot 2024-12-10 174251.png');
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForTimeout(4000);
     await this.page.getByRole('button', { name: 'Done' }).click();
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForTimeout(4000);
     await this.notification();
     await this.page.getByRole('button', { name: 'Show more actions' }).click();
     await this.page.waitForTimeout(2000);
     await this.page.getByRole('menuitem', { name: 'Create Order' }).click();
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForTimeout(4000);
     await this.page.getByRole('textbox', { name: 'Amount' }).click();
     await this.page.getByRole('textbox', { name: 'Amount' }).fill(amount);
     await this.page.waitForTimeout(2000);
@@ -574,7 +575,7 @@ export class salesForceTestPage {
     await this.page.waitForTimeout(2000);
     }
     await this.page.getByRole('button', { name: 'Save' }).click();
-    await this.page.waitForTimeout(2000);
+    await this.page.waitForTimeout(4000);
     await this.page.getByRole('tab', { name: 'Order' }).click();
     await this.page.waitForTimeout(6000);
   }
