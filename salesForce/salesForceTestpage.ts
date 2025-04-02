@@ -496,7 +496,7 @@ export class salesForceTestPage {
         await this.page.waitForTimeout(4000);
         await this.page.getByRole('button', { name: 'Save' }).click();
         await this.page.waitForTimeout(4000);
-        console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**Your Quotes create successfully.Url:${this.page.url()}**gbEnd**`);
+        console.log(`**gbStart**salesforce_newlead**splitKeyValue**${firstName}${lastName} Quotes create successfully.Url:${this.page.url()}**gbEnd**`);
         await this.page.getByRole('link', { name: pdfName }).first().click();
         await this.page.waitForTimeout(4000);
         await this.notification();
@@ -515,7 +515,7 @@ export class salesForceTestPage {
         // await this.page.waitForTimeout(4000);
         // console.log(`File Name: ${fileName.trim()}`); 
         // console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**SalesForce NewLead ${fileName.trim()} is PDF created successfully**gbEnd**`);
-        console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**PDF created Url:${this.page.url()}**gbEnd**`);
+        console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**${firstName}${lastName} PDF created Url:${this.page.url()}**gbEnd**`);
         await this.page.waitForTimeout(2000);
       }else{
         console.log(`**gbStart**salesforce_newlead_PDF**splitKeyValue**${firstName}${lastName} account is not Qualification.**gbEnd**`);
@@ -577,6 +577,8 @@ export class salesForceTestPage {
     await this.page.getByRole('button', { name: 'Save' }).click();
     await this.page.waitForTimeout(4000);
     await this.page.getByRole('tab', { name: 'Order' }).click();
+    await this.page.waitForTimeout(2000);
+    console.log(`**gbStart**salesforce_order**splitKeyValue**${leadname} order created successfully. URL:${this.page.url()}**gbEnd**`);
     await this.page.waitForTimeout(6000);
   }
 }
