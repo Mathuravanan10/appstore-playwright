@@ -43,7 +43,7 @@ test.describe(() => {
         const pageText = await page.locator('body').innerText();
     
         console.log('Page Text:\n', pageText);
-        await page.screenshot({ path: 'pages/sap/sapUi5Img/asset1.png', fullPage: true });
+        await page.screenshot({ path: 'pages/sap/assetImg/asset1.png', fullPage: true });
         await page.waitForTimeout(2000);
         console.log(`**gbStart**salesforce_asset_url**splitKeyValue**QR Code content:${result}**gbEnd**`);
         console.log(`**gbStart**salesforce_asset_text**splitKeyValue**${pageText}**gbEnd**`);
