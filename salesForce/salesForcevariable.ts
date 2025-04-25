@@ -35,4 +35,6 @@ const ordercreation = {
     paymentdate: '$Payment_Date',
 };
 
-export {LeadDetails, userName, Password, pdfName, ordercreation};
+const id = '$Asset';
+
+export {LeadDetails, userName, Password, pdfName, ordercreation, id};

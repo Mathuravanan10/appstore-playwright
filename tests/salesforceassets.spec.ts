@@ -1,0 +1,45 @@
+import { test } from '@playwright/test';
+import { PNG } from 'pngjs';
+import jsQR from 'jsqr';
+import { id, Password, userName } from '../salesForce/salesForcevariable';
+
+async function decodeQRCodeWithJsQR(buffer: Buffer): Promise<string | null> {
+  const png = PNG.sync.read(buffer);
+  const code = jsQR(
+    new Uint8ClampedArray(png.data),
+    png.width,
+    png.height
+  );
+
+  return code?.data || null;
+}
+
+test('QR Code scan test', async ({ page }) => {
+  await page.goto('https://test.salesforce.com/');
+  await page.getByLabel('Username').fill(userName);
+  await page.waitForTimeout(3000);
+  await page.getByLabel('Password').fill(Password);
+  await page.waitForTimeout(3000);
+  await page.getByRole('button', { name: 'Log In to Sandbox' }).click();
+  await page.waitForTimeout(8000);
+  await page.goto(`https://basiscloudsolutionspvtltd--infusedev.sandbox.lightning.force.com/lightning/r/Asset/${id}/view`);
+  await page.waitForTimeout(8000);
+
+  const qrElement = page.locator('lightning-card img');
+  const buffer = await qrElement.screenshot();
+
+  try {
+    const result = await decodeQRCodeWithJsQR(buffer);   
+    console.log('QR Code content:', result);
+    await page.goto(`${result}`);
+    await page.waitForTimeout(6000);
+    const pageText = await page.locator('body').innerText();
+
+    console.log('Page Text:\n', pageText);
+    await page.screenshot({ path: 'pages/sap/sapUi5Img/asset1.png', fullPage: true });
+    await page.waitForTimeout(2000);
+
+  } catch (err) {
+    console.error('Failed to decode QR Code:', err);
+  }
+});
