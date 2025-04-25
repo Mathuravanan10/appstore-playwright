@@ -14,7 +14,7 @@ async function decodeQRCodeWithJsQR(buffer: Buffer): Promise<string | null> {
   return code?.data || null;
 }
 
-test('QR Code scan test', async ({ page }) => {
+test('QRCode_scan', async ({ page }) => {
   await page.goto('https://test.salesforce.com/');
   await page.getByLabel('Username').fill(userName);
   await page.waitForTimeout(3000);
