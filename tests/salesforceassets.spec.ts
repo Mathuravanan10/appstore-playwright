@@ -41,12 +41,64 @@ test.describe(() => {
         await page.goto(`${result}`);
         await page.waitForTimeout(6000);
         const pageText = await page.locator('body').innerText();
-    
-        console.log('Page Text:\n', pageText);
         await page.screenshot({ path: 'salesForce/asset1.png', fullPage: true });
         await page.waitForTimeout(2000);
+        // 1. Remove unwanted JSON-like patterns
+        const cleanedText = pageText?.replace(/({.*?})/gs, '') || '';
+    
+        // 2. Normalize text (remove extra newlines)
+        const normalizedText = cleanedText.replace(/\n{2,}/g, '\n').trim();
+      
+        // 3. Smart split based on keywords
+        const sections = normalizedText.split('\n').map(line => line.trim());
+      
+        // Helper function to find value after label
+        const findValue = (label: string) => {
+          const idx = sections.findIndex(line => line.toLowerCase().includes(label.toLowerCase()));
+          return idx !== -1 && idx + 1 < sections.length ? sections[idx + 1] : '-';
+        };
+      
+        const name = findValue('Customer Information');
+        const email = findValue('Email');
+        const phone = findValue('Phone');
+        const assetId = findValue('Asset ID');
+        const issueObserved = findValue('Service History');
+        const caseOrigin = findValue('Case Origin');
+        const caseStatus = findValue('Case SLA Status');
+        const createdDate = findValue('Issue Created Date');
+      
+        // Now Format the final output
+        const customerInfo = `
+      Infuse Kitchen Services
+            
+      -------------------------------
+      Customer Information
+      -------------------------------
+      Name: ${name}
+      Email: ${email}
+      Phone: ${phone}
+      Asset ID: ${assetId}
+      
+      -------------------------------
+      Service History
+      -------------------------------
+      Issue Observed: ${issueObserved}
+      Case Origin: ${caseOrigin}
+      Case SLA Status: ${caseStatus}
+      Issue Created Date: ${createdDate}
+      
+      -------------------------------
+      Contact
+      -------------------------------
+      Infuse Kitchen Services
+      No. 4 MaduvanKarai, 4th Street, MKN Road, Alandur, Chennai 600016
+      +91 98407 55481 / 044-48586910
+      Email: infuse@infuseilan.com
+      
+      © 2025 Infuse Kitchen Services. All rights reserved.
+      `;
         console.log(`**gbStart**salesforce_asset_url**splitKeyValue**QR Code content:${result}**gbEnd**`);
-        console.log(`**gbStart**salesforce_asset_text**splitKeyValue**${pageText}**gbEnd**`);
+        console.log(`**gbStart**salesforce_asset_text**splitKeyValue**${customerInfo}**gbEnd**`);
     
       } catch (err) {
         console.error('Failed to decode QR Code:', err);
