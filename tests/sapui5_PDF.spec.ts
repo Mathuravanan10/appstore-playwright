@@ -1,5 +1,6 @@
 import { test, Page } from '@playwright/test';
 import { pdfNumber, userName, userPassword } from './sapui5variable';
+import fs from 'fs/promises';
 
 
 test.describe(() => {
@@ -20,19 +21,39 @@ test.describe(() => {
     });
 
     test('Sapui5_PDF',async () => {
-        for(const click of pdfNumber){
-            console.log(click, 'ppp')
+        const lastDownloadedFile = 'last_downloaded.txt';
+        let startIndex = 0;
+        try {
+          const lastDownloaded = await fs.readFile(lastDownloadedFile, 'utf-8');
+          const lastIndex = pdfNumber.indexOf(lastDownloaded.trim());
+          if (lastIndex !== -1) {
+            startIndex = lastIndex + 1;
+          }
+        } catch (err) {
+          console.log('No last download record found, starting fresh...');
+        }
+        
+        for (let i = startIndex; i < pdfNumber.length; i++) {
+            const click = pdfNumber[i];
+            console.log('Downloading:', click);
             await page.goto(`https://me.sap.com/notes/${click}`);
             await page.waitForTimeout(10000);
             const page1Promise = page.waitForEvent('popup');
-            await page.getByRole('button', { name: 'PDF Version' }).click();
-            await page.waitForTimeout(4000);
-            const page1 = await page1Promise;
-            await page1.waitForLoadState('domcontentloaded');
-            await page.waitForTimeout(8000);
-            await page1.pdf({ path: `pdf/${click}F.pdf`, format: 'A4' });
-            await page1.close();
-            await page.waitForTimeout(6000);
+            const pdficon = page.getByRole('button', { name: 'PDF Version' });
+            await page.waitForTimeout(2000);
+            if(await pdficon.isVisible()){
+                await pdficon.click();
+                await page.waitForTimeout(4000);
+                const page1 = await page1Promise;
+                await page1.waitForLoadState('domcontentloaded');
+                await page.waitForTimeout(8000);     
+                await page1.pdf({ path: `pdf/${click}.pdf`, format: 'A4' });
+                await page1.close();
+                await page.waitForTimeout(6000);
+                await fs.writeFile(lastDownloadedFile, click);
+                console.log('Downloaded and saved as last:', click);
+            }
         }
+        await fs.unlink(lastDownloadedFile);
     });
 }); 
