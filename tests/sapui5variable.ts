@@ -16,4 +16,4 @@ export const userName = '$Username';
 
 export const userPassword = '$password';
 
-export const pdfNumber = $note_ids
+export const pdfNumber = $note_ids.note
