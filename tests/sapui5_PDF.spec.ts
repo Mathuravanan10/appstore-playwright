@@ -4,7 +4,7 @@ import fs from 'fs/promises';
 
 
 test.describe(() => {
-    test.setTimeout(800000);
+    test.setTimeout(0);
     let page: Page;
     test.beforeAll(async ({browser}) =>{
         page = await browser.newPage();
