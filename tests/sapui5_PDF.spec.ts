@@ -48,7 +48,7 @@ test.describe(() => {
                 await page.waitForTimeout(8000);     
                 await page1.pdf({ path: `pdf/${pdfNumber}.pdf`, format: 'A4' });
                 await page1.close();
-                await page.waitForTimeout(6000);
+                await page.waitForTimeout(2000);
                 // await fs.writeFile(lastDownloadedFile, click);
                 console.log('Downloaded and saved as last:', pdfNumber);
             // }
