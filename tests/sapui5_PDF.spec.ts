@@ -33,8 +33,7 @@ test.describe(() => {
           console.log('No last download record found, starting fresh...');
         }
         
-        for (let i = startIndex; i < pdfNumber.length; i++) {
-            const click = pdfNumber[i];
+        for ( const click of pdfNumber) {
             console.log('Downloading:', click);
             await page.goto(`https://me.sap.com/notes/${click}`);
             await page.waitForTimeout(10000);
