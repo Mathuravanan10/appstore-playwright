@@ -315,7 +315,7 @@ export class salesForceTestPage {
             }
             await this.page.waitForTimeout(6000);
           }
-          await this.page.getByRole('button', { name: 'Show actions for this object' }).click();
+          await this.page.getByRole('button', { name: 'Show actions for Quotes' }).click();
           await this.page.waitForTimeout(4000);
           await this.page.getByRole('menuitem', { name: 'New Quote' }).click();
           await this.page.waitForTimeout(4000);
@@ -372,7 +372,7 @@ export class salesForceTestPage {
           }
           await this.page.getByRole('button', { name: 'Save' }).click();
           await this.page.waitForTimeout(4000);
-          await this.page.getByRole('button', { name: 'Show actions for this object' }).click();
+          await this.page.getByRole('button', { name: 'Show actions for Quotes' }).click();
           await this.page.waitForTimeout(4000);
           await this.page.getByRole('menuitem', { name: 'New Quote' }).click();
           await this.page.waitForTimeout(6000);
@@ -487,7 +487,7 @@ export class salesForceTestPage {
         }
         await this.page.getByRole('button', { name: 'Save' }).click();
         await this.page.waitForTimeout(4000);
-        await this.page.getByRole('button', { name: 'Show actions for this object' }).click();
+        await this.page.getByRole('button', { name: 'Show actions for Quotes' }).click();
         await this.page.waitForTimeout(4000);
         await this.page.getByRole('menuitem', { name: 'New Quote' }).click();
         await this.page.waitForTimeout(4000);
