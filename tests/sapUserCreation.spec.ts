@@ -18,6 +18,7 @@ test.describe(() => {
 
     test('Sap_User_Creation',async () => {
         for(const click of sapUserCreation){
+            const [name, domain] = click.email.split('@');
             await page.goto('https://me.sap.com/userscontacts/usermanagement');
             await page.waitForTimeout(10000);
             const iframe= page.frameLocator('iframe[id="shell-component---application344094044--frame"]');
@@ -28,18 +29,18 @@ test.describe(() => {
             await iframe.locator('#__list12-listUl').click();
             await iframe.getByPlaceholder("Enter First Name ...").fill(click.firstName);
             await iframe.getByPlaceholder("Enter Last Name ...").fill(click.LastName);
-            await iframe.getByPlaceholder('Enter Email Username').fill(click.email);
+            await iframe.getByPlaceholder('Enter Email Username').fill(name);
             const mail = iframe.getByText('Duplicate Email Address');
             await page.waitForTimeout(4000);
             await iframe.locator('.sapMSltArrow').nth(0).click({ force: true });
             const dropdown = iframe.locator('.sapMSelectList');
             await page.waitForTimeout(2000);
             if(await mail.isVisible()){
-                console.log(`${click.email} this email already there`);
-                console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} this email already there**gbEnd**`);
+                console.log(`${name} this email already there`);
+                console.log(`**gbStart**sapusercreation**splitKeyValue**${name} this email already there**gbEnd**`);
                 await page.waitForTimeout(2000);
             }else{
-                const option = dropdown.locator('li', { hasText: `${click.emailpathu}` }).nth(0);
+                const option = dropdown.locator('li', { hasText: `${domain}` }).nth(0);
                 await option.click(); 
 
                 const today = new Date();
@@ -78,7 +79,7 @@ test.describe(() => {
                     await iframe.getByRole('button', { name: "Submit" }).click();
                     await page.waitForTimeout(10000);
                     await expect(iframe.getByText('User was requested')).toBeVisible();
-                    console.log(`**gbStart**sapusercreation**splitKeyValue**${click.email} SAP S-User Creation Successful**gbEnd**`);
+                    console.log(`**gbStart**sapusercreation**splitKeyValue**${name} SAP S-User Creation Successful**gbEnd**`);
                     await iframe.getByRole('button', { name: "OK" }).click();
                     await page.waitForTimeout(10000);
                 }
