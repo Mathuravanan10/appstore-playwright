@@ -34,4 +34,4 @@ export const obj_Install_Number = '$Obj_Install_Number';
 
 export const name_only = 'mathuravanan';
 
-export const user = $S-User;
+// export const user = $S-User;
