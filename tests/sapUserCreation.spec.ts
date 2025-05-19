@@ -1,5 +1,5 @@
 import { test, Page, selectors, expect } from '@playwright/test';
-import { email_id, password, sapUserCreation } from './sapUserVariable';
+import { email_id, password, sapUserCreation, user } from './sapUserVariable';
 
 test.describe(() => {
     test.setTimeout(800000);
@@ -17,8 +17,10 @@ test.describe(() => {
     });
 
     test('Sap_User_Creation',async () => {
+        const data = JSON.parse(user);
+        const { FirstName, Lastname, Email_Name_Only } = data[0];
         for(const click of sapUserCreation){
-            const [name, domain] = click.email.split('@');
+            const [name, domain] = Email_Name_Only.split('@');
             await page.goto('https://me.sap.com/userscontacts/usermanagement');
             await page.waitForTimeout(10000);
             const iframe= page.frameLocator('iframe[id="shell-component---application344094044--frame"]');
@@ -27,8 +29,8 @@ test.describe(() => {
             await iframe.locator('#__input0-vhi').click();
             await page.waitForTimeout(2000);
             await iframe.locator('#__list12-listUl').click();
-            await iframe.getByPlaceholder("Enter First Name ...").fill(click.firstName);
-            await iframe.getByPlaceholder("Enter Last Name ...").fill(click.LastName);
+            await iframe.getByPlaceholder("Enter First Name ...").fill(FirstName);
+            await iframe.getByPlaceholder("Enter Last Name ...").fill(Lastname);
             await iframe.getByPlaceholder('Enter Email Username').fill(name);
             const mail = iframe.getByText('Duplicate Email Address');
             await page.waitForTimeout(4000);
